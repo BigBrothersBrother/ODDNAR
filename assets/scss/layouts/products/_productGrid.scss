@@ -1,0 +1,536 @@
+// =============================================================================
+// PRODUCT GRID (CSS)
+// =============================================================================
+
+
+// Product grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+//
+// -----------------------------------------------------------------------------
+
+.productGrid {
+
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin: 0;
+
+    .product {
+        @include grid-column(12, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+        padding: 0 10px;
+
+        @include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(3, $total-columns);
+        }
+    }
+}
+
+#product-listing-container {
+
+  .productGrid {
+    padding: 0 10px;
+
+    @include breakpoint("medium") {
+        padding: 0;
+    }
+
+    .product {
+        @include grid-column(12, $float: none);
+        padding: 0 10px;
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
+        @include breakpoint("medium") {
+            width: grid-calc(6, $total-columns);
+        }
+        @include breakpoint("large") {
+            width: grid-calc(4, $total-columns);
+        }
+        @include breakpoint("xlarge") {
+            width: grid-calc(3, $total-columns);
+        }
+
+        .card {
+          .atc-card {
+            display: none;
+          }
+        }
+    }
+  }
+}
+
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, reduce products to 3 across.
+//
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+
+    .productGrid {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+}
+
+
+//
+// Product Grid with masonry layout
+//
+// Purpose: Display products in a masonry grid, with a display inline-block for
+// older browsers that don't support css multicolumn
+//
+// 1. Some older browser support. This class comes from Modernizr
+// -----------------------------------------------------------------------------
+
+.productMasonry {
+    column-count: 2;
+    column-fill: auto;
+    column-gap: remCalc(20px);
+    margin: 0 0 spacing("single");
+    overflow: hidden;
+
+    @include breakpoint("small") {
+        column-count: 3;
+    }
+
+    @include breakpoint("medium") {
+        column-count: 4;
+    }
+
+    .product {
+        break-inside: avoid;
+        display: block;
+        margin-bottom: spacing("double");
+        padding: 0;
+        width: 100%;
+    }
+
+    .card {
+        margin: 0;
+    }
+
+    .no-csscolumns & { // 1
+        @include u-listBullets("none");
+        @include grid-row($behavior: "nest");
+        font-size: 0;
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include grid-column(3, $float: none);
+            display: inline-block;
+            font-size: fontSize("base"); // 1
+            vertical-align: top;
+        }
+
+        .card {
+            margin: 0;
+        }
+    }
+}
+
+
+// Product grid view variation
+// -----------------------------------------------------------------------------
+
+.productGrid--maxCol6 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            column-count: 6;
+        }
+    }
+}
+
+.productGrid--maxCol3 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            @include grid-column(12);
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                @include grid-column(4, $float: none);
+            }
+        }
+    }
+}
+
+img.card-image.maint.lazyautosizes.lazyloaded {
+    position: relative;
+    z-index: 1;
+}
+.hoveimgt {
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+    transition: all 1s ease;
+    opacity: 0;
+    height: 100%;
+    width: calc(100% + 2px);
+    background: #fff;
+    left: -1px;
+}
+.hoveimgt:hover {
+    @include breakpoint("medium") {
+        opacity: 1;
+    }
+}
+@media screen and (max-width: 767px) {
+
+    #product-listing-container {
+        span.dot {
+            border: 1px #999 solid;
+            border-radius: 10px;
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            margin: 10px 1px;
+        }
+
+        .grid-dots {
+            height: 20px;
+            text-align: center;
+        }
+        span.dot.left {
+            background: #666;
+        }
+        li.product.swap {
+            span.dot.left {
+                background: #fff;
+            }
+            span.dot.right {
+                background: #666;
+            }
+            .hoveimgt {
+                opacity: 1;
+            }
+        }
+    }
+}
+span.pricerange {
+    font-weight: 600;
+    color: #bc3421;
+    @include fs-custom(14, 15);
+}
+span.pricerangeDiscounted {
+    font-weight: 600;
+    color: #222;
+    @include fs-custom(13, 14);
+    text-decoration: line-through;
+}
+a.card-thumb.cardthumb-29.morecolors:after {
+    content: "MORE COLORS";
+    background: #5a534c;
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    bottom: 0px;
+    z-index: 99999;
+    padding: 7px 0px;
+}
+span.lowas {
+    display: none;
+}
+span#resultnum {
+    font-size: 14px;
+    font-style: italic;
+    display: block;
+    margin-top: 10px;
+    font-family: calluna,"Times New Roman",Times,Baskerville,serif;
+    @include breakpoint("medium") {
+        display: inline-block;
+        margin: 0px;
+      }
+
+}
+div#rugfinder {
+    font-size: 14px;
+    margin-top: 20px;
+    @include breakpoint("medium") {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.col20 {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    @include breakpoint("medium") {
+        width: calc(25% - 15px);
+    }
+}
+
+.col20 select {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 50px;
+    text-transform: uppercase;
+    border: 1px solid #bbb;
+      background:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSI3IiB2aWV3Qm94PSIwIDAgMTIgNyI+CiAgPG1ldGFkYXRhPjw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+Cjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIvPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgCjw/eHBhY2tldCBlbmQ9InciPz48L21ldGFkYXRhPgo8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsLXJ1bGU6IGV2ZW5vZGQ7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEyLDEuM0wxMC41OS0uMDUsNiw0LjMzLDEuNDEtLjA1LDAsMS4zLDYsNy4wMzdaIi8+Cjwvc3ZnPgo=) 95% center no-repeat;
+      cursor: pointer;
+        background-color: #f7f7f7;
+
+
+  .svg-inline--fa.fa-angle-down.fa-w-10 {
+    display: inline-block;
+    z-index: 999;
+  }
+}
+
+button#qfGo {
+    background: #326600;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    width: 100%;
+    padding: 0px 20px;
+    height: 50px;
+
+      @include breakpoint("medium") {
+          width: 100%;
+        }
+}
+
+#product-listing-container .card-figure a {
+    display: block;
+    position: relative;
+    background: #fff;
+    min-height: 362px;
+
+    .card-image.maint.lazyautosizes.lazyloaded {
+        max-height: 100%;
+        width: auto;
+    }
+    @media (min-width: 375px) {
+          min-height: 398px;
+    }
+
+  @media (min-width: 400px) {
+        min-height: 444px;
+  }
+  @media (min-width: 551px) {
+        min-height: 292px;
+  }
+  @media (min-width: 640px) {
+        min-height: 364px;
+  }
+  @media (min-width: 740px) {
+        min-height: 444px;
+  }
+  @media (min-width: 800px) {
+        min-height: 278px;
+  }
+  @media (min-width: 1100px) {
+        min-height: 314px;
+  }
+  @media (min-width: 1280px) {
+        min-height: 302px;
+  }
+    @include breakpoint("medium") {
+        width: 100%;
+    }
+}
+
+
+#product-listing-container .card-figure img.card-image.maint.lazyautosizes.lazyloaded, #product-listing-container .card-figure img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*a.card-thumb.morecolors:after {
+    content: "MORE COLORS";
+    display: block;
+    position: absolute;
+    z-index: 999999;
+    bottom: 0px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    font-size: 14px;
+    background: rgba(0, 0, 0, .5);
+    font-weight: bold;
+    padding: 5px 0px;
+    letter-spacing: .5px;
+}*/
+
+.best-sellers .hoveimgt:hover, .best-sellers .hoveimgt {
+    display: none;
+    opacity: 0;
+}
+section.productCarousel.slick-slider {
+    max-width: 1280px;
+    margin: auto;
+}
+.bottom-description-text {
+    display: none;
+}
+.cat-desc-wrapper .bottom-description-text {
+    display: block;
+}
+
+span#resultnum {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.ratingwrap {
+    width: 86px;
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/reviewstars-empty.png);
+}
+.ratingstars {
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/reviewstars.png);
+    height: 13px;
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+ .nxt-results-container .free-blurb {
+    margin-top: 5px;
+}
+
+.category-page .page {
+    @include breakpoint("medium") {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+    }
+}
+.category-page .inner-container {
+    padding-bottom: 30px;
+
+   .breadcrumbs {
+        padding-left: 0px;
+
+        @include breakpoint("medium") {
+            padding-left: 20px;
+        }
+    }
+    h2 {
+        padding-top: 0px;
+        margin-top: 5px;
+    }
+}
+
+div#mlayoutswap {
+    position: absolute;
+    float: right;
+    margin-right: 20px;
+    font-size: 20px;
+    color: #326600;
+    right: -7px;
+    top: 10px;
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    #sqlayout {
+        display: none;
+    }
+}
+
+div#mlayoutswap.square {
+
+    #sqlayout {
+        display: inline;
+        margin-right: 2px;
+    }
+    #gridlayout {
+        display: none;
+    }
+}
+
+span.cttext {
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0px 3px;
+    position: relative;
+    top: -2px;
+}
+
+body.square {
+
+    #product-listing-container .productGrid .product {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+        float: none;
+        padding: 0 10px;
+    }
+    #product-listing-container .card-figure a {
+        min-height: 370px;
+    }
+}
+#categorytitle { display: none; }
+
+@media screen and (max-width: 767px) {
+div#categorytitle {
+    background: #f6f4ee;
+    margin-bottom: 0px;
+    padding: 10px 20px;
+    display: block;
+    position: relative;
+    height: 50px;
+}
+
+#categorytitle a {
+    display: block;
+    position: absolute;
+    font-size: 20px;
+    text-decoration: none;
+}
+.breadcrumbs {
+    display: none;
+}
+}
+
+.Stair.Treads .accordion-block.Size, .Stair.Treads .Single.Piece {
+    display: none;
+}

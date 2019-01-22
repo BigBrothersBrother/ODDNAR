@@ -1,0 +1,11 @@
+<div class="form-field {{this.display_name}}" data-product-attribute="set-select">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+         <span class="mobhide">PLEASE SELECT</span> {{ this.display_name }}
+    </label>
+
+    <select class="form-select form-select--small" name="attribute[{{this.id}}]" id="attribute_select_{{id}}" {{#if required}}required{{/if}}>       
+        {{#each this.values}}
+            <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected{{/if}}> {{#if label '===' 'Serged Cotton'}} Serged Cotton + $8.00 {{else}}{{label}}{{/if}}</option>
+        {{/each}}
+    </select>
+</div>

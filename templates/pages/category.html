@@ -1,0 +1,69 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{{/partial}}
+
+{{#partial "pagename"}}{{category.name}}{{/partial}}
+
+{{#partial "page"}}
+<div class="inner-container" class="grid">
+
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+  <div id="categorytitle">
+    <a href="javascript:history.back()"><i class="fas fa-angle-left"></i> <span class="cttext">Previous</span></a>    
+    <div id="mlayoutswap">
+        <span class="cttext">Display</span>
+        <span id="gridlayout"><i class="fas fa-th-large"></i></span>
+        <span id="sqlayout"><i class="fas fa-square"></i></span>
+    </div>
+  </div>
+  {{{category.description}}} 
+  <span id="resultnum">
+    {{category.total_products}} products 
+    
+  </span>
+  
+  {{{snippet 'categories'}}}
+  <div class="page">
+      {{#or category.subcategories category.faceted_search_enabled}}
+          <aside class="page-sidebar" id="faceted-search-container">
+              {{> components/category/sidebar}}
+          </aside>
+      {{else}}
+          {{#if theme_settings.shop_by_price_visible}}
+              <aside class="page-sidebar" id="faceted-search-container">
+                  {{> components/category/sidebar}}
+              </aside>
+          {{/if}}
+      {{/or}}
+      <main class="page-content grid" id="product-listing-container">
+          {{#if category.products}}
+              {{> components/category/product-listing}}
+          {{else}}
+              <p>{{lang 'categories.no_products'}}</p>
+          {{/if}}
+
+        {{#if category.description}}
+          <div class="cat-desc-wrapper">
+            
+          </div>
+        {{/if}}
+      </main>
+  </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,86 @@
+<div style="border-bottom:solid 1px #ebebeb; padding-top:15px; padding-bottom:15px;">
+    <h2 class="title-heading">The following items have been added to your cart</h2></div>
+<div class="table-items">
+    <table>
+        <tr class="thead">
+            <th style="text-align:left;">Product Details</th>
+            <th>...</th>
+            <th>QTY</th>
+        </tr>
+        {{#with cart.added_item}}
+        <tr class="trow" style="border-bottom: solid 1px #000;">
+            <td style="text-align:left;">
+                <img class="productView-image--cart"
+                     src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                     alt="{{image.alt}}"
+                     title="{{image.alt}}" width="140" style="border:solid 1px #ebebeb; padding:5px;"/>
+            </td>
+            <td>
+                <div style="padding:5px;"><strong>{{name}}</strong></div>
+                <div>
+                    <table class="table-specs">
+                        <tr>
+                            <td class="label"><strong>Brand:</strong></td>
+                            <td>{{brand.name}}</td>
+                        </tr>
+
+                        {{#if configurable_fields}}
+                        {{#each configurable_fields}}
+                        <tr>
+                            <td class="label">
+                                <strong>{{name}}:</strong>
+                            </td>
+                            <td>
+                                {{#if is_file}}
+                                <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                                {{else}}
+                                {{{value}}}
+                                {{/if}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                        {{/if}}
+
+                        {{#if options}}
+                        {{#each options}}
+                        <tr>
+                            <td class="label">
+                                <strong>{{name}}:</strong>
+                            </td>
+                            <td>
+                                {{#if is_file}}
+                                <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                                {{else}}
+                                {{{value}}}
+                                {{/if}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                        {{/if}}
+
+                        <!--<tr>-->
+                        <!--<td class="label"><strong>Price:</strong></td>-->
+                        <!--<td>-->
+                        <!--    {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}-->
+                        <!--    {{quantity}} &times; {{price.formatted}}-->
+                        <!--    {{else}}-->
+                        <!--    {{> components/common/login-for-pricing}}-->
+                        <!--    {{/or}}-->
+                        <!--</td>-->
+                        <!--</tr>-->
+                    </table>
+                </div>
+            </td>
+            <td><strong>{{quantity}}</strong></td>
+        </tr>
+        {{/with}}
+        <tr style="border-top: solid 2px #ebebeb;">
+            <td colspan="3" style="text-align:right;">
+                <a href="#" class="button continue-shopping" role="button" data-reveal-close style="background-color:#ffffff; color:#408300; font-weight:bold;">Continue shopping</a>
+                {{#if cart.show_primary_checkout_button}}
+                <a href="/cart.php" class="button button--primary">Checkout</a>
+                {{/if}}
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,220 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+
+{{#partial "hero"}}
+<div class="inner-container">
+
+  <div class="banners" data-banner-location="top">
+    <div class="banner">
+      <!--<img src="https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/campaign-428-banner.jpg">-->
+      <a id=banner href="https://www.naturalarearugs.com/c/sisal/extra-wide-binding/">
+      <img src="https://cdn11.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/campaign-431-banner.jpg">
+      </a>
+    </div>
+  </div>
+
+  {{{snippet 'home_content'}}}
+</div>
+{{/partial}}
+
+{{#partial "page"}}
+
+{{#each shipping_messages}}
+{{> components/common/alert-info message}}
+{{/each}}
+
+<div class="main full">
+  <div class="inner-container">
+
+    <section class="rug-finder"><br><br>
+      <div class="rf-heading-wrapper">
+        <div class="custom-hr"></div>
+        <strong>Quick Rug Finder</strong>
+        <div class="custom-hr"></div>
+        <p>Use our Quick Rug Finder to find your perfect match!</p>
+      </div>
+
+
+      <div data-nxt-pfv2="6b70546f59695b727d6f564c4c7e46517d6d4c735653595b3f4e3d2d29347d37-1"></div>
+
+      <div id="qrf-utext">
+        Want to build your own custom rug? <a href="/c/custom-rugs/">Click here to get started.</a>
+      </div>
+      <div style="clear: both;"></div>
+    </section>
+
+
+    <section class="sub-banners-wrapper">
+
+      <span class="sub-banner"><a href="/c/custom/"></a>
+        <span class="sub-banner-text-wrapper">
+          <span class="sub-banner-text">
+            <span class="banner-header">Custom Hand-Crafted Rugs</span>
+            <span class="banner-blurb">Our skilled craftsmen will hand-craft a rug that's as unique as you are. Perfect for your home because they're created to meet your specifications!</span>
+            <a href="/c/custom/"><span class="banner-button">Shop Custom Rugs</span></a>
+          </span>
+        </span>
+      </span>
+
+      <span class="sub-banner"><a href="/c/sisal/"></a>
+        <span class="sub-banner-text-wrapper">
+          <span class="sub-banner-text">
+            <span class="banner-header">Sisal Rugs : The Natural Choice</span>
+            <span class="banner-blurb">Rugs made from natural sisal fibers are beautiful, durable & healthier for your family. The smart choice for allergy sufferers & families with children.</span>
+            <a href="/c/sisal/"><span class="banner-button">Shop Sisal Rugs</span></a>
+          </span>
+        </span>
+      </span>
+
+      <span class="sub-banner"><a href="/c/grass/"></a>
+        <span class="sub-banner-text-wrapper">
+          <span class="sub-banner-text">
+            <span class="banner-header">Seagrass & Mountain Grass</span>
+            <span class="banner-blurb">One of the most earth-friendly rug options available, grass rugs are durable and easy to clean. These beautiful rugs are perfect for high traffic areas.</span>
+            <a href="/c/grass/"><span class="banner-button">Shop Grass Rugs</span></a>
+          </span>
+        </span>
+      </span>
+
+      <section class="mini-sub-banners-wrapper">
+        <ul>
+          <li><a href="/c/stair-treads/"></a>
+            <div class="mini-sub-banner-text">
+              <span>Stair Treads</span>
+            </div>
+          </li>
+          <li><a href="/c/new-arrivals/"></a>
+            <div class="mini-sub-banner-text">
+              <span>New Arrivals</span>
+            </div>
+          </li>
+          <li><a href="/c/contemporary/shag-rugs/"></a>
+            <div class="mini-sub-banner-text">
+              <span>Shag Rugs</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    <span class="sub-banner"><a href="/c/jute-rugs/"></a>
+        <span class="sub-banner-text-wrapper">
+            <span class="sub-banner-text">
+                <span class="banner-header">Modern & Stylish Jute Rugs</span>
+                <span class="banner-blurb">With a wide variety of weave styles, colors and simple patterns, our jute area rugs are beautiful in
+                    their simplicity.</span>
+                    <a href="/c/jute-rugs/"><span class="banner-button">Shop Jute Rugs</span></a>
+            </span>
+        </span>
+    </span>
+<!--
+      <span class="sub-banner"><a href="/c/contemporary/shag-rugs/"></a>
+        <span class="sub-banner-text-wrapper">
+          <span class="sub-banner-text">
+            <span class="banner-header">Get in the Groove with Shag Rugs</span>
+            <span class="banner-blurb">Soft & stylish, today's shag rugs add warmth and whimsy to your home. Choose bright, bold colors or cozy plush neutrals for a modern look.</span>
+            <a href="/c/contemporary/shag-rugs/"><span class="banner-button">Shop Shag Rugs</span></a>
+          </span>
+        </span>
+      </span>
+-->
+    </section>
+
+  </div>
+
+
+  <section class="best-sellers">
+
+     {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+
+  </section>
+
+  <div class="inner-container">
+    <section class="more-ways">
+      <strong>More Ways to Shop</strong>
+      <ul>
+        <li><a href="/c/more/swatch-samples/"></a>
+          <img src="{{cdn 'img/sb-freerugsamples.jpg'}}" alt="Get up to 5 free rug samples">
+          <strong>Free Rug Samples</strong>
+          <p>Can't decide? Get up to 5 free rug swatches.</p>
+        </li>
+        <li><a href="/c/new-arrivals/"></a>
+          <img src="{{cdn 'img/more-ways/new-arrivals.jpg'}}" alt="Shop our great selection of new rugs">
+          <strong>This Just In - New Rugs!</strong>
+          <p>Shop our great selection of new rugs for your home.</p>
+        </li>
+        <li><a href="/page/to-the-trade/"></a>
+          <img src="{{cdn 'img/more-ways/to-the-trade.jpg'}}" alt="Join our discount trade program for sellers & designers">
+          <strong>To The Trade</strong>
+          <p>Join our Discount Trade Program for designers & sellers.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!--<section class="testimonials-wrapper">-->
+    <!--  <img src="{{cdn 'img/logo-white.svg'}}" alt="">-->
+
+    <!--  <div class="testimonials-slider">-->
+
+    <!--    <div class="testimonial">-->
+    <!--      <div>-->
+    <!--        <strong>"I was concerned about ordering a custom rug online, but they were awesome and so was their customer service!"</strong>-->
+    <!--        <b class="quote-author">L. Keighley Kettering, OH</b>-->
+    <!--        <a href="/page/testimonials/">More Testimonials</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+        
+    <!--    <div class="testimonial">-->
+    <!--      <div>-->
+    <!--        <strong>"Excellent customer service--patient and quick to answer questions.Prompt shipping. Wonderful wonderful rug!!"</strong>-->
+    <!--        <b class="quote-author">L. Ruskey Sausalito, CA</b>-->
+    <!--        <a href="/page/testimonials/">More Testimonials</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+        
+    <!--    <div class="testimonial">-->
+    <!--      <div>-->
+    <!--        <strong>"Have ordered several rugs which have all withstood a great deal of abuse from pets and kids. Great quality and always timely delivery!!"</strong>-->
+    <!--        <b class="quote-author">W. PETERS Haverford, PA</b>-->
+    <!--        <a href="/page/testimonials/">More Testimonials</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+        
+    <!--    <div class="testimonial">-->
+    <!--      <div>-->
+    <!--        <strong>"High quality. No odor. Rolled out and was flat. Shipping packaging was great. I will definitely purchase more rugs."</strong>-->
+    <!--        <b class="quote-author">L. Lennon Naugatuck, CT</b>-->
+    <!--        <a href="/page/testimonials/">More Testimonials</a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</section>-->
+  </div>
+
+  <script type="text/javascript" src="https://www.contentplum.com/js/feeds/code.js"></script>
+  <p class="cp-widget-headingODD">Share your style with <span class="hashtagNAR"> @naturalarearugs</span></p>
+  <div id="contentplum_widget_30447454318" style="padding-bottom: 40px; padding-top: 0; margin-top: 0;"></div>
+  <script type="text/javascript">new contentplum_widget_function('contentplum_widget_30447454318', '0', '1', '', '', '', '0', '40');</script>
+
+ <div class="inner-container">
+
+    <section class="seo">
+      <h1>NATURAL AREA RUGS - Buy Discount Rugs</h1>
+      <h2>Buy Natural Fiber Area Rugs</h2>
+      <p>When you're looking for high quality natural fiber rugs at an affordable price, Natural Area Rugs (NAR) has what you need. With more than 40 years of experience, we are a global leader in importing, manufacturing, and selling high quality contemporary area rugs and fine natural fiber floor coverings. We're proud to be one of the most trusted rug importers and manufacturers in the US, and our team works hard every day to maintain our great reputation.</p>
+      <p>Our impressive selection of natural rugs includes sisal rugs, seagrass rugs, jute rugs, wool rugs, bamboo rugs, and more, most in both standard and custom sizes. In addition, we offer a variety of contemporary area carpets, including shag and Turkish carpets, as well as leather rugs and carpet stair treads. Ensure that your rugs stay where they are put and protect your floors with one of our quality rug pads.</p>
+      <p>At Natural Area Rugs, we believe customer satisfaction is the cornerstone to our success, so we only offer the best quality area rugs at the most reasonable prices. Our helpful customer service team is here to help you with your order and answer any questions. We're your go-to source for natural rugs at affordable prices.</p>
+    </section>
+  </div>
+  {{/partial}}
+  {{> layout/base}}

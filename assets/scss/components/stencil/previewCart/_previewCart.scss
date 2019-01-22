@@ -1,0 +1,152 @@
+// =============================================================================
+// PREVIEW CART (CSS)
+// =============================================================================
+//
+// 1. Override server-generated inline-css
+//
+// -----------------------------------------------------------------------------
+
+.previewCart {
+    @include grid-row;
+
+    @include breakpoint("medium") {
+        .productView {
+            @include grid-column(9);
+            display: flex;
+            margin: 0;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+        .productView-image {
+            @include grid-column(7);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .productView-image--cart {
+            align-self: flex-start;
+            margin: 0 auto;
+            width: auto;
+        }
+
+        .productView-details {
+            @include grid-column(5);
+        }
+    }
+
+    .productView-title {
+        margin-top: 0;
+    }
+}
+
+.previewCartCheckout {
+    background: transparent;
+    padding: 0px;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        @include grid-column(3, $float:right);
+        padding: spacing("single");
+        width: 100%;
+    }
+
+    .button {
+        display: block;
+        margin: 0;
+        width: 100%;
+        background: #fff;
+        font-size: 14px;
+        letter-spacing: 0px;
+        text-transform: uppercase;
+
+        // scss-lint:disable NestingDepth
+        + .button,
+        + p {
+            margin-top: spacing("half");
+        }
+    }
+}
+.previewCartCheckout .button.button--primary {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#82b551+0,3e7f00+10,3e7f00+75,2a5500+100 */
+        background: #82b551; /* Old browsers */
+        background: -moz-linear-gradient(top, #82b551 0%, #3e7f00 10%, #3e7f00 75%, #2a5500 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #82b551 0%,#3e7f00 10%,#3e7f00 75%,#2a5500 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #82b551 0%,#3e7f00 10%,#3e7f00 75%,#2a5500 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82b551', endColorstr='#2a5500',GradientType=0 ); /* IE6-9 */
+        border-radius: 5px;
+        border: 1px #6f825d solid;
+}
+.previewCartCheckout-price {
+    display: block;
+    font-size: fontSize("largest");
+    font-weight: bold;
+    text-align: center;
+}
+
+.previewCartCheckout-subtotal {
+    display: block;
+    margin-bottom: spacing("single");
+    margin-top: spacing("single");
+}
+
+.previewCartCheckout-additionalCheckoutButtons {
+    p {
+        // scss-lint:disable ImportantRule
+        float: none !important; // 1
+        margin: spacing("third") 0;
+    }
+
+    .CheckoutButton {
+        margin-bottom: spacing("base");
+
+        &:first-child {
+            margin-top: spacing("single");
+        }
+
+        &:last-child {
+            margin-bottom: spacing("single");
+        }
+    }
+}
+
+.suggestiveCart {
+    display: none;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
+#previewModal {
+    width: 640px;
+    margin: 0;
+}
+#previewModal .modal-body {
+    background: #fff;
+    padding: 20px;
+}
+#previewModal .modal-header-title {
+    font-size: 22px;
+    text-align: center;
+}
+
+
+.previewCartCheckout-additionalCheckoutButtons p {
+    display: none;
+}
+
+a.keepshopping {
+    font-weight: bold;
+}
+h2#cartprev-title {
+    font-family: Open Sans;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
+#previewModal .modal-body.pvcart {
+    margin-top: 0px;
+    padding-top: 5px;
+}

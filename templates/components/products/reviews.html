@@ -1,0 +1,45 @@
+<section class="productReviews" id="product-reviews" data-product-reviews>
+    {{#if reviews.total}}
+    <div class="" id="productReviews-content" aria-hidden="false">
+        <ul class="productReviews-list" id="productReviews-list">
+            {{#each reviews.list}}
+            <li class="productReview">
+                <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                    <header>
+                        <span class="productReview-rating rating--small" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            {{> components/products/ratings rating=rating}}
+                            <span class="productReview-ratingNumber" itemprop="ratingValue">({{ rating }})</span>
+                        </span>
+                        <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
+                        {{#if name}}
+                            <meta itemprop="author" content="{{name}}">
+                            <p class="productReview-author">
+                                {{lang 'products.reviews.post_on_by' date=date name=name }}
+                            </p>
+                        {{else}}
+                            <p class="productReview-author">
+                                {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                            </p>
+                        {{/if}}
+                    </header>
+                    <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
+                </article>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{else}}
+      <p class="no-reviews">There are no reviews for this product at this time</p>
+    {{/if}}
+    {{#if settings.show_product_reviews}}
+        <span class="productView-reviewLink">
+            <a class="button button--primary atc-card" href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+            {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                {{lang 'products.reviews.new'}}
+            </a>
+        </span>
+        {{> components/products/modals/writeReview}}
+    {{/if}}
+    {{> components/common/paginator pagination.reviews}}
+</section>
+{{{snippet 'reviews'}}}

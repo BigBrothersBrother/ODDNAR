@@ -1,0 +1,385 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    background-color: #f6f4ee;
+    font-size: 0;
+    clear: both;
+    margin-top: 30px;
+
+    @include breakpoint("medium") {
+    margin-top: 60px;
+    }
+}
+
+.footer-info {
+
+}
+
+.footer-info-col {
+    @include grid-column(12);
+    color: stencilColor("color-textSecondary");
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base"); // 2
+    margin-bottom: spacing("double");
+    text-align: center;
+    vertical-align: top;
+
+    @include breakpoint("medium") {
+        width: width("4/12");
+    }
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.footer-info-col--small {
+    @include breakpoint("medium") {
+        width: width("2/12");
+    }
+}
+
+.footer-info-col--left {
+    @include breakpoint("small") {
+        padding: 0;
+    }
+}
+
+.footer-info-col--right {
+    @include breakpoint("small") {
+        left: 50%;
+        position: inherit;
+    }
+
+    @include breakpoint("medium") {
+        left: 0;
+        padding: 0;
+        text-align: right;
+    }
+}
+
+
+// Content
+// -----------------------------------------------------------------------------
+
+.trustpilot-widget {
+    background:#fff;
+    padding:30px 20px;
+    border-top:1px solid #CCC;
+}
+.footer-info-heading {
+    color: #5a534c;
+    font-family: $body-font-family;
+    font-size: 14px;
+    text-transform: inherit;
+    font-variant: lining-nums
+
+}
+
+.footer-info-list {
+    list-style: none;
+    margin-left: 0;
+
+    a {
+        color: stencilColor("color-textSecondary");
+        text-decoration: none;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.footer-copyright {
+    text-align: center;
+    // background-color: #fff;
+    background-color: #f6f4ee;
+    padding: 28px 20px 23px;
+
+    @include breakpoint("medium") {
+      padding: 6px 0 20px;
+    }
+    @include breakpoint("large") {
+      padding-top: 16px;
+    }
+
+    .footer-copyright-text {
+      clear: both;
+      padding-top: 16px;
+      padding-bottom: 16px;
+
+      @include breakpoint("medium") {
+        padding-top: 25px;
+      }
+
+      #footer-divider {
+        display: none;
+
+        @include breakpoint("medium") {
+          display: inline;
+          font-size: 12px;
+          margin: 0 4px;
+        }
+      }
+    }
+
+    .powered-by {
+        color: #000;
+        font-size: 12px;
+        line-height: 13px;
+        margin: 0 0 8px;
+
+        @include breakpoint("medium") {
+            display: inline-block;
+            margin: 0;
+        }
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.footer-payment-icons {
+    margin-top: 25px;
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    @include breakpoint("medium") {
+        margin-top: 60px;
+        margin-left: 20px;
+        display: inline-block;
+        width: auto;
+        float: left;
+        vertical-align: bottom;
+    }
+
+    .footer-payment-icon {
+        height: 35px;
+        margin-right: 10px;
+        vertical-align: middle;
+        width: 40px;;
+
+        &:last-child {
+          margin-right: 0;
+        }
+    }
+
+    svg {
+        fill: #999;
+    }
+}
+
+.securetext {
+	display: block;
+	color: #000;
+	position: relative;
+	width: 100%;
+}
+// CUSTOM
+.footer-copyright .inner-container {
+	max-width: 1240px;
+}
+.top-footer-row {
+  @include breakpoint("medium") {
+    display: flex;
+    border-bottom: 1px solid #d0cfcc;
+    padding-bottom: 20px;
+    padding-top: 40px;
+  }
+  @include breakpoint("large") {
+    padding-bottom: 20px;
+  }
+}
+
+article[data-section-type="newsletterSubscription"], .footer-info-col--social {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 0;
+    margin-top: 40px;
+
+    @include breakpoint("medium") {
+      width: 50%;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 0px;
+    }
+
+    .footer-info-heading {
+      font-family: $header-font-family;
+      @include fs-custom(21, 24);
+      line-height: 24px;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      max-width: 100%;
+      margin: 10px auto 15px;
+      color: #5a534c;
+
+      @include breakpoint("large") {
+        max-width: none;
+      }
+    }
+}
+
+article[data-section-type="newsletterSubscription"] {
+  padding-top: 0px;
+
+  @include breakpoint("medium") {
+    padding-top: 0;
+  }
+
+  .form-field {
+    margin: 0;
+  }
+
+  .form-prefixPostfix {
+    .form-input {
+      border-color: #ddd;
+      color: #767676;
+      font-weight: 400;
+      height: 50px;
+      min-width: 0px;
+
+      &::placeholder {
+        color: #767676;
+      }
+    }
+    .form-prefixPostfix-button--postfix {
+      height: auto;
+      border: 0;
+      line-height: 50px;
+      padding: 0 20px;
+    }
+  }
+}
+
+.footer-info-col--social {
+
+  h5, p {
+    display: none;
+
+    @include breakpoint("medium") {
+      display: block;
+    }
+  }
+  .socialLinks {
+    margin: 25px 0 5px;
+
+    .socialLinks-item {
+      width: 25%;
+      margin-bottom: 20px;
+
+      @include breakpoint("small") {
+        width: calc(100% / 8);
+      }
+      @include breakpoint("medium") {
+        width: 50px;
+      }
+
+      .icon {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+.outsiders {
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  @include breakpoint("medium") {
+    display: inline-block;
+    width: auto;
+    float: right;
+    margin-right: 20px;
+  }
+  a {
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: bottom;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.site-wide-testimonials {
+    text-align: center;
+    padding: 20px 20px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+
+    @include breakpoint("medium") {
+        padding: 20px 20px 20px;
+    }
+
+    .quote-wrap {
+
+        .quote {
+            @include fs-custom(18, 21);
+            @include lh-custom(28, 31);
+            font-family: $header-font-family;
+            font-style: italic;
+            color: #5a534c;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .quote-author {
+            @include fs-custom(14, 14);
+            font-family: $sansserif;
+            color: #5a534c;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            font-variant: lining-nums;
+        }
+    }
+
+    a {
+        color: #326600;
+        @include fs-custom(14, 14);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+}

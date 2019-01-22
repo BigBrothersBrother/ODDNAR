@@ -1,0 +1,24 @@
+<section class="productCarousel"
+    data-slick='{
+        "dots": true,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+            {
+                "breakpoint": 767,
+                "settings": {
+                    "slidesToScroll": 1,
+                    "slidesToShow": 4
+                }
+            }
+        ]
+    }'
+>
+    {{#each products}}
+    <div class="productCarousel-slide">
+        {{> components/products/card theme_settings=../theme_settings customer=../customer}}
+    </div>
+    {{/each}}
+</section>

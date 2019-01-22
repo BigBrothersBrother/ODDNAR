@@ -1,0 +1,195 @@
+// =============================================================================
+// FACET SEARCH (CSS)
+// =============================================================================
+
+#facetedSearch {
+  display: none;
+
+  @include breakpoint("medium") {
+      display: block !important;
+  }
+
+  &.is-open {
+      display: block;
+      margin-bottom: 40px;
+        @include breakpoint("medium") {
+        margin-bottom: 0px;
+}
+      // scss-lint:disable SelectorDepth, NestingDepth
+      .accordion--navList,
+      .accordion-block:first-child .accordion-navigation {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+      }
+  }
+}
+
+.facetedSearch-clearLink {
+  font-size: 12px;
+}
+
+
+// Faceted search toggle
+// -----------------------------------------------------------------------------
+//
+// 1. Do not show if viewport is over "medium" breakpoint
+//
+// -----------------------------------------------------------------------------
+.facetedSearch-toggle {
+    @include grid-row;
+    max-width: none;
+    border: 2px solid #326600;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 5px;
+    text-align: center;
+    width: calc(50% - 30px);
+    cursor: pointer;
+
+    @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
+        display: none !important; // 1
+        margin-bottom: 20px;
+    }
+
+    &#filtertoggle {
+      margin-right: 10px;
+      margin-left: 20px;
+    }
+    &#sorttoggle {
+      margin-left: 10px;
+      margin-right: 20px;
+    }
+
+    .toggleLink-text {
+      color: #326600;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      padding-left: 10px;
+      letter-spacing: .5px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+
+        svg {
+          fill: #326600;
+          transition: all .5s ease;
+        }
+      }
+    }
+
+    &.is-open {
+        background-color: #326600;
+
+        .toggleLink-text {
+          color: #fff;
+
+          .icon {
+            svg {
+              fill: #fff;
+              transform: rotate(-180deg);
+            }
+          }
+        }
+    }
+}
+
+.facetedSearch-toggle-text,
+.facetedSearch-toggle-indicator {
+    display: block;
+    font-weight: normal;
+}
+
+.facetedSearch-toggle-text {
+    @include grid-column(7);
+    padding: 0;
+    text-align: left;
+}
+
+.facetedSearch-toggle-indicator {
+    padding: 0;
+}
+
+
+// Faceted search nav list
+// -----------------------------------------------------------------------------
+//
+// 1. Do not show if viewport is over "medium" breakpoint
+//
+// -----------------------------------------------------------------------------
+.facetedSearch-navList {
+
+    .facetedSearch-toggle + &,
+    .sidebarBlock + & {
+    }
+
+    .navList--inner {
+        margin-left: spacing("single");
+    }
+}
+
+.facet-quick-heading {
+    text-transform: capitalize;
+    margin-top: 0px;
+}
+
+.facetedSearch-optionColumns {
+    column-count: 1;
+    column-gap: 20px;
+
+    @include breakpoint("medium") {
+          column-count: 3;
+          border: none;
+    }
+    .navList-action {
+      border-top: 1px solid #ddd;
+      padding: 10px 0px;
+
+      @include breakpoint("medium") {
+          border: none;
+          padding: 0px;
+      }
+    a {
+      padding: 50px 0px;
+    }
+    &:hover, &:active, &:focus {
+      text-decoration: underline;
+    }
+    @include breakpoint("medium") {
+      padding: 10px 0px;
+    }
+}
+}
+
+
+
+// Faceted search refine filters
+// -----------------------------------------------------------------------------
+//
+// 1. Only show if viewport is over "medium" breakpoint
+//
+// -----------------------------------------------------------------------------
+.facetedSearch-refineFilters {
+    display: block; // 1
+    font-size: 12px;
+    padding: 10px 20px 20px;
+
+    .sidebarBlock-heading {
+      font-style: italic;
+    }
+
+    .clear-all {
+      font-size: 12px;
+      color: #404040;
+      text-transform: capitalize;
+    }
+}
+
+// Facted search ratings
+.facetedSearch-content--rating {
+    .is-selected {
+        font-weight: bold;
+    }
+}

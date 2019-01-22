@@ -1,0 +1,42 @@
+<div id="slidetabs">
+  <ul class="desktabs">
+    <li class="details-head active" data-tab="tab-1">Product Details</li>
+    <li class="vid-head hidden" data-tab="tab-2">Product Videos</li>
+    <li class="care-head hidden" data-tab="tab-3">Care & Maintenance</li>
+    <li class="shipping-returns-head hidden" data-tab="tab-4">Shipping & Returns</li>
+  </ul>
+  <div style="clear:both;"></div>
+
+  <div id="stwrapper">
+
+    <span class="mob-head mb-one active" data-ttab="tab-1">Product Details
+      <i class="far fa-chevron-down"></i>
+    </span>
+    <div class="one content active" id="tab-1">
+      {{{product.description}}}
+      {{{snippet 'product_description'}}}
+    </div>
+
+    <span class="mob-head mb-two hidden" data-ttab="tab-2">Product Videos
+      <i class="far fa-chevron-down"></i>
+    </span>
+    <div class="two content hidden" id="tab-2"></div>
+
+    <span class="mob-head mb-three hidden" data-ttab="tab-3">Care & Maintenance
+      <i class="far fa-chevron-down"></i>
+    </span>
+    <div class="three content" id="tab-3"></div>
+
+    <span class="mob-head mb-four hidden" data-ttab="tab-4">Shipping & Returns
+      <i class="far fa-chevron-down"></i>
+    </span>
+    <div class="four content" id="tab-4"></div>
+    <div style="padding:10px;">
+      <span>
+        <strong>
+          <a href="https://www.naturalarearugs.com/page/contact-us/">Have more questions? Email a Product Specialist.</a>
+        </strong>
+      </span>
+    </div>
+  </div>
+</div>

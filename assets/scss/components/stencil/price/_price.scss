@@ -1,0 +1,24 @@
+// =============================================================================
+// PRICE (CSS)
+// =============================================================================
+.price-section.price-section--withoutTax span {
+@include fs-custom(14, 15);
+font-family: $serif;
+font-style: italic;
+}
+.price--rrp,
+.price--discounted {
+    text-decoration: line-through;
+}
+
+.price-section--minor {
+    color: color("greys", "light");
+}
+
+.price {
+  color: #222;
+  @include fs-custom(14, 15);
+  font-weight: 600;
+  font-family: $sansserif !important;
+  font-style: normal !important;
+ }

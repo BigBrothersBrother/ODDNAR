@@ -1,0 +1,173 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}">
+  <figure class="card-figure">
+    {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+    <span class="sale-p">{{price.without_tax.formatted}}</span>
+    <span data-product-price-with-tax class="price percent-flag"></span>
+    {{/or}}
+
+    <a href="{{url}}" class="card-thumb cardthumb-{{id}}">
+      <img class="card-image lazyload maint" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{#each custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" title="{{#each custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}">
+      {{#with images.[1]}}
+      <div class="hoveimgt">
+        <img class="card-image lazyload maint" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'small' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" />
+      </div>
+      {{/with}}
+    </a>
+  </figure>
+
+  <div class="grid-dots">
+    <span class="dot left"></span>
+    <span class="dot right"></span>
+  </div>
+
+  <div class="card-body">
+    <div class="card-title">
+      <a href="{{url}}">{{name}}</a>
+    </div>
+    <div class="sku-{{id}} gridsku" style="display: none;">{{sku}}</div>
+
+    <!-- NEW ADDED CONTENT ODD -->
+
+  {{#each custom_fields}}
+    {{#if name '===' 'Square Foot Price'}}
+      <span class="price">Priced by sq. ft.</span>
+    {{else}}
+      <div class="card-text cardprice-{{id}}" data-test-info-type="price">
+
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{> components/products/price price=price customer=customer}}
+            {{else}}
+            {{> components/common/login-for-pricing}}
+            {{/or}}
+
+      </div>
+    {{/if}}
+  {{/each}}
+
+  <div class="card-text cardprice-{{id}}" data-test-info-type="price" {{#each custom_fields}}{{#if name '===' 'Square Foot Price'}}style="display:none;"{{/if}}{{/each}}>
+      {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+      {{> components/products/price price=price customer=customer}}
+      {{else}}
+      {{> components/common/login-for-pricing}}
+      {{/or}}
+  </div>
+
+
+  <!-- END NEW ADDED CONTENT ODD  -->
+
+
+
+    <div class="free-blurb">
+      <div>
+        <!-- <span class="icon"><svg><use xlink:href="#icon-checkmark" /></svg></span>
+        <p>Free Shipping</p> -->
+      </div>
+      {{#if custom_fields}}
+      {{#each custom_fields}}
+
+      {{#if name '===' 'Free Rug Pad'}}
+      {{#if value '===' 'YES'}}
+      <!--<div>
+        <span class="icon"><svg><use xlink:href="#icon-checkmark" /></svg></span>
+        <p>Free Rug Pad</p>
+      </div>-->
+      {{/if}}
+      {{/if}}
+      {{/each}}
+      {{/if}}
+      <script>
+        var mcolors = '';
+        var parray = '';
+        var parrayq = '';
+        var minQty = 1;
+
+        {{#if custom_fields}}
+          {{#each custom_fields}}
+          {{#if name '===' 'Minimum Qty'}}
+            minQty = parseInt('{{value}}');
+          {{/if}}
+
+          {{#if name '===' 'Price Array - Price'}}
+            parray = '{{value}}';
+          {{/if}}
+
+          {{#if name '===' 'Price Array - Quantity'}}
+            parrayq = '{{value}}';
+
+            var prprice = parray.split('~');
+            var prinv = parrayq.split('~');
+
+            var arrtotal = prprice.length;
+            var mintotal = 99999;
+            var maxtotal = 0;
+
+            for (i = 0; i < arrtotal; i++) {
+
+              if (+prinv[i] > 0) {
+
+                if(+prprice[i] < mintotal) {
+                  mintotal = prprice[i];
+                }
+
+                if(+prprice[i] > maxtotal) {
+                  maxtotal = prprice[i];
+                }
+
+              }
+            }
+
+
+          {{/if}}
+
+          {{#if name '===' 'Color Array'}}
+            var carray{{id}} = '{{value}}';
+            carray{{id}} = carray{{id}}.split('|');
+            var ccolor = carray{{id}}[0].split('~');
+            var cinv = carray{{id}}[1].split('~');
+            var carrtotal = ccolor.length;
+            var basecolor = ccolor[1].trim();
+
+
+            for (i = 1; i < carrtotal; i++) {
+              if (ccolor[i].trim() !== basecolor && ccolor[i] !== 'undefined') {
+                mcolors = 'true';
+              }
+            }
+
+          {{/if}}
+        {{/each}}
+        {{/if}}
+        if (mcolors=='true') {$('.cardthumb-{{id}}').addClass('morecolors');}
+      </script>
+      <script type="text/javascript">
+          var priceWithoutTax = '{{price.without_tax.value}}';
+          var minPriceValue = '{{price.price_range.min.without_tax.value}}';
+          var maxPriceValue = '{{price.price_range.max.without_tax.value}}';
+          minPriceValue = minPriceValue === '' ? priceWithoutTax * minQty : parseFloat(minPriceValue) * minQty;
+          maxPriceValue = maxPriceValue === '' ? priceWithoutTax * minQty : parseFloat(maxPriceValue) * minQty;
+          var minPrice = '$'+Number(minPriceValue).toLocaleString('en-US', {minimumFractionDigits: 2});
+
+          // NEW ADDED CONTENT ODD
+          var minPriceValueDiscounted = Math.floor(minPriceValue / .8);
+          var maxPriceValueDiscounted = Math.floor(maxPriceValue / .8);
+          var minPriceDiscounted = '$'+Number(minPriceValueDiscounted).toLocaleString('en-US', {minimumFractionDigits: 2});
+
+          if (maxPriceValue > minPriceValue) {
+              var maxPrice = '$' + Number(maxPriceValue).toLocaleString('en-US', {minimumFractionDigits: 2});
+              var maxPriceDiscounted = '$'+Number(maxPriceValueDiscounted).toLocaleString('en-US', {minimumFractionDigits: 2});
+              $('.cardprice-{{id}}').html('<span class="pricerangeDiscounted">' + minPriceDiscounted + ' - ' + maxPriceDiscounted +  '</span><br><span class="pricerange">' + minPrice + ' - ' + maxPrice + '</span>');
+          } else if(minPriceValue > 0) {
+              $('.cardprice-{{id}}').html('<span class="pricerangeDiscounted">'+minPriceDiscounted+'</span><br><span class="pricerange">'+minPrice+'</span>');
+          }
+          // END NEW ADDED CONTENT ODD
+      </script>
+    </div>
+  </div>
+
+  {{#if add_to_cart_url}}
+  <a href="{{add_to_cart_url}}" class="button button--small atc-card">{{lang 'products.add_to_cart'}}</a>
+  {{else}}
+
+  <a href="{{url}}" class="button button--small atc-card sdlink" id="sdlink-{{id}}" data-product-id="{{id}}">See Details</a>
+  {{/if}}
+</article>

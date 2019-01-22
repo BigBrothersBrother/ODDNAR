@@ -1,0 +1,116 @@
+.banner a {
+  display: none;
+}
+.main-slider a {
+    padding-top: 5%;
+}
+@media only screen and (min-width: 768px) {
+    .main-slider a {
+    padding-top: 3.5%;
+}
+}
+/* MAIN BANNER */
+
+.main-slider a.first {
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/campaign-9.26-mob.jpg) no-repeat right top;
+    background-size: cover;
+}
+.main-slider a.second {
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/heromob-custom.jpg?t=1522877654&_ga=2.89606297.326262232.1522685285-573576457.1519162166) no-repeat right top;
+    background-size: cover;
+}
+.main-slider a.third {
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/tablet-banner-2.jpg?t=1545353902&_ga=2.110285445.1097374381.1545348475-2114892646.1544661644) no-repeat right top;
+    background-size: cover;
+}
+.main-slider a.fourth {
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/tablet-banner-1.jpg?t=1545353901&_ga=2.110285445.1097374381.1545348475-2114892646.1544661644) no-repeat right top;
+    background-size: cover;
+}
+.main-slider a.fifth {
+    background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/tablet-banner-3.jpg?t=1545353904&_ga=2.110285445.1097374381.1545348475-2114892646.1544661644) no-repeat right top;
+    background-size: cover;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  .main-slider a.first {
+        background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/campaign-9.26-desk.jpg) no-repeat right top;
+      background-size: cover;
+  }
+
+  .main-slider a.second {
+      background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/hdesk-custom.jpg?t=1522710123&_ga=2.45327076.1325195796.1522685697-1488758225.1501267407) no-repeat right top;
+      background-size: cover;
+  }
+
+  .main-slider a.third {
+      background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/banner-2.jpg?t=1545353898&_ga=2.110285445.1097374381.1545348475-2114892646.1544661644) no-repeat 0% 50%;
+      background-size: cover;
+  }
+
+  .main-slider a.fourth {
+      background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/banner-1.jpg?t=1545353896&_ga=2.110285445.1097374381.1545348475-2114892646.1544661644) no-repeat right top;
+      background-size: cover;
+  }
+
+    .main-slider a.fifth {
+      background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/banner-3.jpg?t=1545357153&_ga=2.140033715.1097374381.1545348475-2114892646.1544661644) no-repeat right -40px;
+      background-size: cover;
+  }
+
+}
+
+/* ============================================================================== */
+/* ============================================================================== */
+
+
+/* SUB BANNERS */
+
+.mini-sub-banners-wrapper ul li:first-child {
+  background: url(https://cdn11.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/stair-1.png) no-repeat;
+  background-size: cover;
+}
+.mini-sub-banners-wrapper ul li:nth-child(2) {
+  background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/new-arrivals.jpg) no-repeat;
+  background-size: cover;
+}
+.mini-sub-banners-wrapper ul li:last-child {
+  background: url(https://cdn11.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/shag.jpg) no-repeat;
+  background-size: cover;
+}
+
+.sub-banners-wrapper .sub-banner:first-child {
+  background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/custom-hand-crafted-rugs-mobile.jpg?t=1546836489&_ga=2.263290636.1477475870.1546835530-2114892646.1544661644) no-repeat;
+}
+.sub-banners-wrapper .sub-banner:nth-of-type(2) {
+  background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/sisal-rugs-the-natural-choice-mobile.jpg?t=1546836492&_ga=2.263290636.1477475870.1546835530-2114892646.1544661644) no-repeat;
+}
+.sub-banners-wrapper .sub-banner:nth-of-type(3) {
+  background: url(https://cdn7.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/seagrass-mountaing-grass-flipped-mobile.jpg?t=1546836492&_ga=2.200021166.1477475870.1546835530-2114892646.1544661644) no-repeat;
+}
+.sub-banners-wrapper .sub-banner:last-child {
+  background: url(https://cdn11.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/jute-rugs-mobile.jpg?t=1547859248&_ga=2.86760984.1455108928.1547854949-2051721862.1547854949) no-repeat;
+}
+
+@media only screen and (min-width: 481px) {
+
+    .sub-banners-wrapper .sub-banner:first-child {
+      background: url(https://cdn11.bigcommerce.com/s-11pbvi1y76/product_images/uploaded_images/custom-hand-crafted-rugs-1280x400.jpg?t=1546657804&_ga=2.39393063.54383566.1546634703-989820242.1544724540) no-repeat;
+      background-size: cover;
+    }
+    .sub-banners-wrapper .sub-banner:nth-of-type(2) {
+      background: url(https://cdn11.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/sisal-rugs-the-natural-choice-1280x400-1.jpg?t=1547862271&_ga=2.219495065.1034280724.1547860124-1672857150.1547860124) no-repeat;
+      background-size: cover;
+    }
+    .sub-banners-wrapper .sub-banner:nth-of-type(3) {
+      background: url(https://cdn11.bigcommerce.com/s-11pbvi1y76/product_images/uploaded_images/seagrass-mountaing-grass-flipped-1280x400.jpg?t=1546656398&_ga=2.44523296.54383566.1546634703-989820242.1544724540) no-repeat;
+      background-size: cover;
+      background-position: right top;
+    }
+    .sub-banners-wrapper .sub-banner:last-child {
+      background: url(https://cdn11.bigcommerce.com/s-8urkqds0ab/product_images/uploaded_images/jute-rugs-1280x400.jpg?t=1547859246&_ga=2.86760984.1455108928.1547854949-2051721862.1547854949) no-repeat;
+      background-size: cover;
+    }
+}

@@ -1,0 +1,74 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}">
+  <figure class="card-figure">
+    {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+    <span class="sale-p">{{price.without_tax.formatted}}</span>
+    <span data-product-price-with-tax class="price percent-flag"></span>
+    {{/or}}
+
+    <a href="{{url}}" class="card-thumb cardthumb-{{id}}">
+      <img class="card-image lazyload maint" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{#each custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" title="{{#each custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}">
+      {{#with images.[1]}}
+      <div class="hoveimgt">
+        <img class="card-image lazyload maint" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'small' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" />
+      </div>
+      {{/with}}
+    </a>
+  </figure>
+
+  <div class="grid-dots">
+    <span class="dot left"></span>
+    <span class="dot right"></span>
+  </div>
+
+  <!-- NEW ADDED CONTENT ODD -->
+
+
+
+  <!-- {{#unless hide_product_quick_view}}
+      {{#if theme_settings.show_product_quick_view}}
+          {{#unless demo}}
+              <a href="#" class="quickview" data-product-id="{{id}}"><p>{{lang 'products.quick_view'}}</p></a>
+          {{/unless}}
+      {{/if}}
+  {{/unless}} -->
+
+
+  <!-- END NEW ADDED CONTENT ODD -->
+
+  <div class="card-body">
+    <div class="card-title">
+      <a href="{{url}}">{{name}}</a>
+    </div>
+    <div class="sku-{{id}} gridsku" style="display: none;">{{sku}}</div>
+    <a href="{{url}}" target="_blank" class="selectSizeODD">Select size</a>
+
+
+    <!-- NEW ADDED CONTENT ODD -->
+
+  {{#each custom_fields}}
+    {{#if name '===' 'Square Foot Price'}}
+      <span class="price">Priced by sq. ft.</span>
+    {{else}}
+      <div class="card-text cardprice-{{id}}" data-test-info-type="price">
+
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{> components/products/price price=price customer=customer}}
+            {{else}}
+            {{> components/common/login-for-pricing}}
+            {{/or}}
+
+      </div>
+    {{/if}}
+  {{/each}}
+
+  <div class="card-text cardprice-{{id}}" id="boughtTogetherPricing" data-test-info-type="price" {{#each custom_fields}}{{#if name '===' 'Square Foot Price'}}style="display:none;"{{/if}}{{/each}}>
+      {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+      {{> components/products/price price=price customer=customer}}
+      {{else}}
+      {{> components/common/login-for-pricing}}
+      {{/or}}
+  </div>
+
+  <!-- END NEW ADDED CONTENT ODD  -->
+ </div>
+</article>

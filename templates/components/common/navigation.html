@@ -1,0 +1,57 @@
+<nav class="navUser">
+    {{> components/common/currency-selector}}
+
+    <ul class="navUser-section navUser-section--alt">
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}">
+                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+            </li>
+        {{/if}}
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navUser-item">
+                <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+            </li>
+        {{/if}}       
+        
+        <li class="navUser-item navUser-item--account">
+          <span class="navUser-action" id="acc-toggle">Account<i class="far fa-chevron-down"></i></span>
+            <div class="acc-dd">
+              <ul class="acc-dd-list">
+                {{#if customer}}
+                    <li><a class="navUser-action log" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+                    <li><a class="navUser-action" href="{{urls.account.index}}">Manage Account</a></li>
+                    <li><a class="navUser-action" href="{{urls.account.orders.all}}">Order Status</a></li>
+                    <li><a class="navUser-action" href="/account.php?action=inbox">Messages</a></li>
+                    <li><a class="navUser-action" href="/account.php?action=address_book">Addresses</a></li>
+                    <li><a class="navUser-action" href="{{urls.account.wishlists.all}}">Wish List</a></li>
+                    <li><a class="navUser-action" href="/account.php?action=recent_items">Recently Viewed</a></li>
+                {{else}}
+                    <li><a class="navUser-action log" href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+                    <li><a class="navUser-action" href="{{urls.auth.create_account}}">Create an Account</a></li>
+                    <li><a class="navUser-action" href="{{urls.account.orders.all}}">Order Status</a></li>
+                {{/if}}
+              </ul>
+            </div>
+        </li>
+        <li class="navUser-item navUser-item--cart">
+            <a
+                class="navUser-action"
+                data-cart-preview
+                data-dropdown="cart-preview-dropdown"
+                data-options="align:right"
+                href="{{urls.cart}}">
+               <i class="far fa-shopping-cart"></i><span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill cart-quantity">({{cart.quantity}})</span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+    </ul>
+</nav>

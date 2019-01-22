@@ -1,0 +1,162 @@
+// =============================================================================
+// Banners Component
+// =============================================================================
+
+
+// Banners
+// -----------------------------------------------------------------------------
+//
+// Purpose: Control the look and feel of the top and bottom site banners
+//
+// -----------------------------------------------------------------------------
+
+.banners {
+    text-align: center;
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: color("whites", "bright");
+    }
+}
+
+.banner {
+
+}
+
+#blackout {
+  background-color: rgba(0,0,0,.55);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  cursor: pointer;
+}
+
+#ctb {
+  padding: 15px 20px 10px;
+  background-color: #f6f4ee;
+  position: relative;
+  z-index: 99999;
+
+  @include breakpoint("medium") {
+    max-width: 600px;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    padding: 60px 40px;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/nar-newsletterbg.jpg);
+    color: #fff;
+    border: 5px #fff solid;
+    background-position: bottom center;
+  }
+
+  .banner-wrap {
+    @include breakpoint("medium") {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  .close-banner {
+    position: absolute;
+    right: 20px;
+    top: 19px;
+    fill: #514b45;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0px;
+    background: url(../img/closectb-mob.png);
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+    @include breakpoint("medium") {
+       background-image: url(../img/closectb.png);      
+    }
+  }
+
+  strong {
+    @include fs-custom(24, 48);
+    @include lh-custom(24, 48);
+    margin: 0 0 10px;
+    color: #5a534c;
+    text-transform: none;
+    font-weight: normal;
+    font-family: $serif;
+    margin-bottom: 20px;
+    display: block;
+    @include breakpoint("medium") {
+      color: #fff;
+      text-shadow: #000 0px 0px 5px;
+    }
+  }
+
+  p {
+    display: none;
+
+    @include breakpoint("medium") {
+      display: block;
+      color: #fff;
+      font-size: 16px;
+      line-height: 20px;
+      text-shadow: #000 0px 0px 5px;
+    }
+  }
+
+  .form {
+    margin: 0;
+  }
+
+  .form-prefixPostfix {
+    .form-input {
+      height: 40px;
+      border-right: 0;
+      border-color: #ddd;
+
+      @include breakpoint("medium") {
+        height: 50px;
+      }
+    }
+
+    .form-prefixPostfix-button--postfix {
+      padding: 0 20px;
+      height: 40px;
+
+      @include breakpoint("medium") {
+        height: 50px;
+      }
+    }
+  }
+}
+/* MAIN BANNER */
+
+.main-slider a {
+    font-size: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    padding-top: 6%;
+
+    @media only screen and (min-width: 768px) {
+      padding-top: 4.5%;
+      margin-top: 0;      
+    }
+}
+
+
+/* ============================================================================== */
+/* ============================================================================== */
+
+
+/* SUB BANNERS */

@@ -1,0 +1,46 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<main class="page" id="testimonials-page">
+
+  <h1 class="page-heading">Testimonials</h1>
+  <div class="caption">
+    <div class="testi_wrap">
+        {{{page.content}}}
+    </div>
+  </div>
+</main>
+
+<script src="{{cdn 'assets/jquery.twbsPagination.min.js'}}"></script>
+
+<script type="text/javascript">
+
+    var testimonialsPerPage = 10;
+    var totalPage = $('.caption .testi_entry').length / testimonialsPerPage;
+    var shouldScrollOnClick = false;
+    $('.caption').wrapInner('<div class="testi_wrap"></div>');
+    $('.caption').append('<div class="text-center"><ul id="pagination-links" class="pagination-sm"></ul></div>');
+    $('#pagination-links').twbsPagination({
+        totalPages: totalPage,
+        visiblePages: 5,
+        onPageClick: function (event, page) {
+            $('.caption .testi_entry').fadeOut(0);
+            var startIndex = page * testimonialsPerPage - testimonialsPerPage;
+            var endIndex = (page * testimonialsPerPage);
+            if(shouldScrollOnClick ){
+                $('html, body').animate({
+                    scrollTop: $('.caption').prev('h1').offset().top
+                }, 1000);
+            }
+            shouldScrollOnClick = true;
+            $('.caption .testi_entry').slice(startIndex, endIndex).fadeIn(1000);
+        }
+    });
+
+
+</script>
+
+{{/partial}}
+
+{{> layout/base}}

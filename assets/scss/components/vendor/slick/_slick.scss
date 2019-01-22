@@ -1,0 +1,142 @@
+// SLICK
+// -----------------------------------------------------------------------------
+//
+// Purpose: These are the styles for the base Slick carousel
+//
+// -----------------------------------------------------------------------------
+
+
+//
+// Next and Previous buttons for all carousels
+//
+// Purpose: Override the plugin to give some Stencil styling to the js generated mark-up
+//
+// 1. Set the background again because the plugin sets the full background property on hover
+// 2. Prevent screen flicker when CSS transition is applied
+//
+// -----------------------------------------------------------------------------
+
+.slick-next,
+.slick-prev {
+    background-color: rgba(90, 83, 76, .75);
+    z-index: 1;
+    border-radius: 0;
+    height: 60px;
+    margin-top: -(remCalc(30px));
+    padding: remCalc(10px);
+    width: 50px;
+    display: none !important;
+
+    @include breakpoint("medium") {
+      display: block !important;
+    }
+
+    &::before {
+        background-repeat: no-repeat;
+        background-size: 150%;
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: rgba(90, 83, 76, .6);
+    }
+}
+
+.slick-next {
+    right: 0;
+
+    &::before {
+        background-position: 35%;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZmlsbCA9IiNmZmYiIGQ9Ik0xMCA2TDguNTkgNy40MSAxMy4xNyAxMmwtNC41OCA0LjU5TDEwIDE4bDYtNnoiLz48L3N2Zz4K");
+    }
+}
+
+.slick-prev {
+    left: 0;
+
+    &::before {
+        background-position: 50%;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE1LjQxIDcuNDFMMTQgNmwtNiA2IDYgNiAxLjQxLTEuNDFMMTAuODMgMTJ6Ii8+PC9zdmc+Cg==");
+    }
+}
+
+
+//
+// Carousel dots
+//
+// Purpose: Stencil overrides for the js generated carousel dots
+//
+// 2. Nesting depth due to plugin css
+// -----------------------------------------------------------------------------
+
+.slick-dots {  // 2
+    margin: 0;
+    position: static;
+
+    li {
+        @include square(32px);
+        margin: 0;
+        padding: remCalc(5px);
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        button,
+        button::before {
+            @include square(12px);
+            border-radius: 50%;
+        }
+
+        button {
+            // scss-lint:disable NestingDepth
+            border: 2px solid #5a534c;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+
+            &:hover {
+                &::before {
+                    background: #5a534c;
+                    opacity: 1;
+                }
+            }
+        }
+
+        button::before {
+            display: block;
+            left: -2px;
+            top: -2px;
+            transition: background 100ms ease-out;
+            opacity: 1;
+        }
+
+        &.slick-active {
+            // scss-lint:disable NestingDepth
+            button::before {
+                background: #5a534c;
+            }
+        }
+    }
+
+}
+
+
+//
+// disabled carousel elements
+// -----------------------------------------------------------------------------
+.slick-disabled {
+    display: none !important;
+}
+
+
+//
+// Slick track
+// -----------------------------------------------------------------------------
+.slick-track {
+    backface-visibility: hidden; // 2
+    perspective: 1000px; // 2
+}

@@ -1,0 +1,62 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{{snippet 'categories'}}}
+<div class="page">
+  <div class="container">
+    <div class='search-results'>
+      <h1 class="page-heading">Search Results for "<span id='search-value'></span>"</h1>
+    </div>
+    <aside class="page-sidebar" id="faceted-search-container">
+
+        <div class="side-bar-wrap">
+            <div id="nextopia-sidebar">
+            </div>
+        </div>
+    </aside>
+
+    <main class="page-content" id="product-listing-container">
+        <div id="nextopia-main">
+        </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  window.onload = function() {
+    const searchVal = document.getElementById('keywords').innerHTML;
+    $('#search-value').append(searchVal);
+  };
+
+  $('#filtertoggle').on('click', function () {
+     $('#sort-box').removeClass('is-open');
+     $('#sorttoggle').removeClass('is-open');
+     $('#filtertoggle').toggleClass('is-open');
+     $('#facetedSearch').toggleClass('is-open');
+   });
+
+   $('#sorttoggle').on('click', function () {
+     $('#filtertoggle').removeClass('is-open');
+     $('#facetedSearch').removeClass('is-open');
+     $('#sort-box').toggleClass('is-open');
+     $('#sorttoggle').toggleClass('is-open');
+   });
+</script>
+
+{{/partial}}
+{{> layout/base}}

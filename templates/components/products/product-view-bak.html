@@ -1,0 +1,178 @@
+<div class="productView" id="defaulttemplate">
+    {{#each product.reviews.messages}}
+        {{#if error}}
+            {{> components/common/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{> components/common/alert-success success}}
+        {{/if}}
+    {{/each}}
+
+    <section class="productView-images" data-image-gallery>
+        <figure class="productView-image"
+                data-image-gallery-main
+                data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                >
+
+            <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                <img class="productView-image--default"
+                     src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                     alt="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" title="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" data-main-image>
+            </a>
+        </figure>
+        <ul class="productView-thumbnails">
+            {{#each product.images}}                
+                <li class="productView-thumbnail" data-imgurl="{{this.alt}}">
+                    <a
+                        class="productView-thumbnail-link"
+                        href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                        data-image-gallery-item
+                        data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                        data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+                        <img onerror="this.style.display = 'none'; $(this).parent('a').parent('li').hide();" src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" title="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}">
+                    </a>
+                </li>                  
+            {{/each}}
+        </ul>
+
+        {{> components/common/share}}
+
+                    
+    </section>
+
+
+
+    <section class="productView-details">
+        <div class="productView-product">
+            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+
+            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+              {{#if product.num_reviews '>' 0}}
+                {{#if schema}}
+                    <meta itemprop="ratingValue" content="{{product.rating}}">
+                    <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                    <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                {{/if}}
+                {{> components/products/ratings rating=product.rating}}
+              {{/if}}
+              {{#if product.num_reviews '>' 0}}
+                <span class="productView-reviewLink">
+                  {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                  <a href="{{product.url}}#product-reviews">Read Reviews</a>
+                </span>
+              {{/if}}
+            </div>
+
+            {{#if product.sku}}
+              <dl class="productView-info">
+                <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
+                <dd class="productView-info-value" id="productsku" data-product-sku="{{product.sku}}">{{product.sku}}</dd>
+              </dl>
+            {{/if}}
+            {{product.detail_messages}}
+        </div>
+
+        <div id="product-icons">
+            <div class="pibox" id="icon-freeship">
+                <img src="{{cdn '/img/truck.png'}}" alt="Free Shipping" />
+                <span>Free Shipping</span>
+            </div>
+            <div class="pibox" id="icon-hand"  style="display: none;">
+                <img src="{{cdn '/img/btn_handmade.png'}}" alt="Hand Made" />
+                <span>Hand Made</span>
+            </div>
+            <div class="pibox" id="icon-earth" style="display: none;">
+                <img src="{{cdn '/img/btn_ecofriendly.png'}}" alt="Earth Friendly" />
+                <span>Earth Friendly</span>
+            </div>   
+            <div class="pibox" id="icon-usa" style="display: none;">
+                <img src="{{cdn '/img/btn_flag.png'}}" alt="Made in USA" />
+                <span>Made in USA</span>
+            </div>         
+        </div>
+        <div style="clear: both;"></div>
+ 
+        <div class="productView-options">
+            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                  data-cart-item-add>
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="product_id" value="{{product.id}}"/>
+                    {{#each product.customizations}}
+                        {{{dynamicComponent 'components/products/customizations'}}}
+                    {{/each}}
+                <div data-product-option-change style="display:none;">
+                    {{#each product.options}}
+                        {{{dynamicComponent 'components/products/options'}}}
+                    {{/each}}
+                </div>
+
+                <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                    <label class="form-label form-label--alternate">
+                        {{lang 'products.current_stock'}}
+                        <span data-product-stock>{{product.stock_level}}</span>
+                    </label>
+                </div>
+
+
+                </div>
+
+                <div class="productView-price">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{> components/products/price price=product.price schema_org=schema}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+                {{{region name="product_below_price"}}}
+                
+                {{#if product.availability}}
+                  <div id="shiptime">{{product.availability}}</div>
+                {{/if}}
+
+                {{#if product.can_purchase}}
+                    {{> components/products/add-to-cart}}
+                {{/if}}
+
+                {{#if product.out_of_stock}}
+                    {{#if product.out_of_stock_message}}
+                        {{> components/common/alert-error product.out_of_stock_message}}
+                    {{else}}
+                        {{> components/common/alert-error (lang 'products.sold_out')}}
+                    {{/if}}
+                {{/if}}
+            </form>
+        </div>
+
+
+        {{#if product.call_for_price}}
+            <p class="productView-price">
+                <span>{{product.call_for_price}}</span>
+            </p>
+        {{/if}}
+
+        {{{snippet 'product_details'}}}
+    </section>
+
+    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
+        {{#if theme_settings.show_product_details_tabs}}
+            {{> components/products/description-tabs}}
+        {{else}}
+            {{> components/products/description}}
+        {{/if}}
+    </article>
+
+    <div id="otherdets">
+      {{#each product.custom_fields}}
+          <dt class="productView-info-name">{{name}}:</dt>
+          <dd class="productView-info-value {{name}}">{{{value}}}</dd>
+      {{/each}}
+    </div>
+</div>
+
+<div id="previewModal" class="modal modal--large" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>

@@ -1,0 +1,29 @@
+{{#if children}}
+<a href="{{url}}">
+    {{name}} 
+</a>
+    <ul class="navPage-subMenu-list">
+        {{#each children}}
+            <li class="navPage-subMenu-item">
+                {{#if children}}
+                    <a href="{{url}}">
+                        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
+                    </a>
+                    <ul class="navPage-childList" id="navPages-{{id}}">
+                        {{#each children}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{else}}                                    
+                    <a href="{{url}}">{{name}}</a>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+<a href="{{url}}" >
+    {{name}} 
+</a>
+{{/if}}

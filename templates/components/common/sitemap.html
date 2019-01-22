@@ -1,0 +1,112 @@
+<nav class="navPages" id="navlist">
+    <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
+        {{#each categories}}
+            <li class="navPages-item {{name}}">
+            {{#if ../theme_settings.navigation_design '===' 'simple'}}
+                {{> components/common/navigation-list}}
+            {{/if}}
+            {{#if ../theme_settings.navigation_design '===' 'alternate'}}
+                {{> components/common/navigation-list-alternate}}
+            {{/if}}
+            </li>
+        {{/each}}
+        {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                 <li class="navPages-item navPages-item-page">
+                     <a class="navPages-action" href="{{url}}">{{name}}</a>
+                 </li>
+             {{/each}}
+        {{/unless}}
+    </ul>
+    <ul class="navPages-list navPages-list--user">
+        {{#if currency_selector.currencies.length '>' 1}}
+            <li class="navPages-item">
+                <a class="navPages-action has-subMenu" href="#" data-collapsible="navPages-currency" aria-controls="navPages-currency" aria-expanded="false">
+                    {{lang 'common.currency' code=currency_selector.active_currency_code}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard-arrow-down"></use></svg></i>
+                </a>
+                <div class="navPage-subMenu" id="navPages-currency" aria-hidden="true" tabindex="-1">
+                    <ul class="navPage-subMenu-list">
+                        {{#each currency_selector.currencies}}
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{{switch_url}}}">
+                                {{#if is_active}}
+                                    <strong>{{name}}</strong>
+                                {{else}}
+                                    {{name}}
+                                {{/if}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </li>
+        {{/if}}
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+            </li>
+        {{/if}}
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navPages-item">
+                <a class="navPages-action navPages-action--storeCredit">
+                    {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                </a>
+            </li>
+        {{/if}}
+
+            <li class="navPages-item">
+                <a class="navPages-action has-subMenu" href="{{urls.account.index}}" data-collapsible="navPages-account">
+                    My Account <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard-arrow-down"></use></svg></i>
+                </a>
+                <div class="navPage-subMenu" id="navPages-account" aria-hidden="true" tabindex="-1">
+                  <ul class="navPage-subMenu-list">
+                    {{#if customer}}
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.account.index}}">Manage Account</a></li>
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}">Order Status</a></li>
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}">Wishlist</a></li>
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+                    {{else}}
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.auth.create_account}}">Create an Account</a></li>
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}">Order Status</a></li>
+                        <li class="navPage-subMenu-item"><a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}">Wishlist</a></li>
+                    {{/if}}
+                  </ul>
+                </div>
+            </li>
+
+            <li class="navPages-item">
+                <a class="navPages-action has-subMenu" href="{{urls.account.index}}" data-collapsible="navPages-connect">
+                    Connect <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard-arrow-down"></use></svg></i>
+                </a>
+                <div class="navPage-subMenu" id="navPages-connect" aria-hidden="true" tabindex="-1">
+                    <ul class="con-dd-list">
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://www.facebook.com/NARrugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook"></use></svg>Facebook</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://www.pinterest.com/naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-pinterest"></use></svg>Pinterest</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://www.twitter.com/NARrugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use></svg>Twitter</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://plus.google.com/u/0/+Naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-googleplus"></use></svg>Google+</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://www.houzz.com/pro/naturalarearugs/natural-area-rugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-houzz"></use></svg>Houzz</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://www.instagram.com/naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-instagram"></use></svg>Instagram</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="http://site.naturalarearugs.com/blogs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-wordpress"></use></svg>Blog</a>
+                        </li>
+                        <li>
+                          <a class="navPage-subMenu-action navPages-action" href="https://www.youtube.com/c/Naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube"></use></svg>Youtube</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+    </ul>
+</nav>

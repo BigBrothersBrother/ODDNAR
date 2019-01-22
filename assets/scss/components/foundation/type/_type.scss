@@ -1,0 +1,112 @@
+// =============================================================================
+// TYPE (CSS)
+// =============================================================================
+
+
+// Custom Font Size Breakpoints
+
+@mixin fs-custom($small, $medium) {
+  font-size: #{$small}px;
+  @include breakpoint("medium") {
+    font-size: #{$medium}px;
+  }
+}
+
+// Custom Line Height Breakpoints
+
+@mixin lh-custom($small, $medium) {
+  line-height: #{$small}px;
+  @include breakpoint("medium") {
+    line-height: #{$medium}px;
+  }
+}
+
+// Stencil type component additions
+// -----------------------------------------------------------------------------
+
+
+body {
+    background-color: #fff;
+    font-size: $body-fontSize;
+    font-weight: $body-font-weight;
+    color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 300;
+    margin-top: $heading-marginTop;
+    color: #000;
+}
+
+h5,
+h6 {
+    text-transform: $heading-textTransform;
+}
+
+a {
+    transition: $anchor-transition;
+}
+
+cite {
+    line-height: $blockquote-cite-lineHeight;
+    margin: $blockquote-cite-margin;
+}
+
+.category-page h1, .page-heading {
+    margin: 10px 0 20px;
+    padding: 0 20px;
+    font-variant: lining-nums;
+    @include fs-custom(24, 30);
+    line-height: 30px;
+    @include breakpoint("medium") {
+    margin: 0px 0 30px;
+    }
+}
+.category-page h1 {
+    display: inline-block;
+    padding-right: 5px !important;
+}
+
+h1 {
+    font-size: $h1-font-size;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: $h3-font-size;
+}
+
+h4 {
+    font-size: $h4-font-size;
+}
+
+h5 {
+    font-size: $h5-font-size;
+}
+
+h6 {
+    font-size: $h6-font-size;
+}
+
+.definitionList {
+    @include clearfix;
+}
+
+.definitionList-key {
+    color: stencilColor("color-textSecondary");
+    float: left;
+    font-weight: fontWeight("normal");
+    margin: 0 spacing("quarter") 0 0;
+}
+
+.definitionList-value {
+    margin: 0;
+}

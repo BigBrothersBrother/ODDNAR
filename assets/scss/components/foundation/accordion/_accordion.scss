@@ -1,0 +1,200 @@
+// =============================================================================
+// ACCORDION (CSS)
+// =============================================================================
+
+
+.accordion {
+    box-shadow: none;
+    border: 0;
+    margin-bottom: 0px;
+
+    .navList {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-content {
+    border: 0;
+
+    .form:only-child {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-title {
+    margin: 0;
+}
+
+.accordion-navigation {
+    position: relative;
+    text-decoration: none;
+    background-color: #fff;
+
+    @include breakpoint("medium") {
+        background-color: #fff;
+  }
+
+    svg {
+      transform: rotate(-90deg);
+    }
+
+    &.is-open {
+      background-color: #f6f4ee;
+          @include breakpoint("medium") {
+            background-color: #fff;
+          }
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+}
+
+
+// Accordion nav list
+// -----------------------------------------------------------------------------
+//
+// Purpose: Used as navigation menu, for example: faceted search menu.
+//
+// -----------------------------------------------------------------------------
+.accordion--navList {
+    @include breakpoint("medium") {
+        border: 0;
+    }
+    .navList-action {
+        padding: 10px 45px 10px 20px;
+}
+    .sidebarBlock + & {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
+    .accordion-block {
+      border-top: 1px solid #ddd;
+
+        @include breakpoint("medium") {
+            border-top: 1px solid #ddd;
+            padding: 0px;
+        }
+    }
+
+    .accordion-content {
+        padding: 0px 0px 20px;
+    }
+
+    .accordion-navigation {
+        border: 0;
+
+        @include breakpoint("medium") {
+            border: 0;
+        }
+
+        &.is-open {
+          border-bottom: 1px solid #ddd;
+
+          @include breakpoint("medium") {
+              border: 0;
+          }
+        }
+    }
+
+    .accordion-title {
+        font-weight: normal;
+        padding: 12px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        @include fs-custom(14, 14);
+        font-family: $sansserif;
+        color: #222;
+        font-weight: 600;
+        letter-spacing: .5px;
+
+        @include breakpoint("medium") {
+        }
+    }
+
+    .accordion-indicator {
+        width: 24px;
+        height: 24px;
+        margin: 2px 10px 0px 0px !important;
+    }
+
+    .accordion-navigation-actions {
+        right: $accordion-navList-padding;
+        top: 10px;
+
+        @include breakpoint("medium") {
+            right: 0;
+        }
+    }
+}
+.accordion-navigation.toggleLink .accordion-indicator {
+            fill: #333;
+          @include breakpoint("medium") {
+            fill: #ddd;
+}
+}
+.accordion-navigation.toggleLink.is-open .accordion-indicator {
+    fill: #333;
+  @include breakpoint("medium") {
+    fill: #ddd;
+  }
+}
+// Accordion block
+// -----------------------------------------------------------------------------
+//
+// Purpose: Child blocks of an accordion
+//
+// -----------------------------------------------------------------------------
+.accordion-block:first-child {
+    margin-top: 0;
+}
+
+.accordion-block:last-child {
+
+    .accordion-navigation {
+      border-bottom: 1px solid #ddd;
+
+      @include breakpoint("medium") {
+        border-bottom: 0;
+      }
+
+        // scss-lint:disable NestingDepth
+        &.is-open {
+        }
+    }
+}
+
+// Accordion navigation actions
+// -----------------------------------------------------------------------------
+//
+// Purpose: Action links, usually aligned to the right of .accordion-navigation
+//
+// -----------------------------------------------------------------------------
+.accordion-navigation-actions {
+    position: absolute;
+    right: $accordion-navigation-paddingHorizontal;
+    top: $accordion-navigation-paddingVertical;
+
+    > a {
+        color: stencilColor("color-textSecondary");
+        vertical-align: middle;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+#facetedSearch-content--price {
+    padding: 20px;
+    @include breakpoint("medium") {
+    padding: 0px;
+}
+}
+
+.navList-item h2 {
+    margin: 0px;
+    font-family: sans-serif;
+}

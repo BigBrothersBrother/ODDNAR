@@ -1,0 +1,106 @@
+<div id="ctb" style="display: none;">
+  <div class="banner-wrap">
+    <div class="close-banner"></div>
+    <strong>Sign up for $25 OFF!</strong>
+    <p>Sign up for the latest news & special offers from Natural Area Rugs and get $25 off your next purchase!</p>
+    <div class="embed-submit-field">
+     <form class="form"  name="campaignerForm" action="https://secure.campaigner.com/CSB/Public/ProcessHostedForm.aspx" method="post"  enctype="multipart/form-data">
+    <fieldset class="form-fieldset">
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5523BD75">
+        <input type="hidden" name="FormInfo" id="FormInfo" value="91974e78-e55c-4108-ad4c-b29fc71a1017">
+        <input type="hidden" name="AccId" id="AccId" value="38y5">
+        <div class="form-field">
+            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+            <div class="form-prefixPostfix wrap">
+                <input class="form-input" id="nl_email" contactattributeid="1461320" name="1461320" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+            </div>
+        </div>
+    </fieldset>
+</form>
+    </div>
+  </div>
+</div>
+<div id="blackout" style="display: none;"></div>
+
+<div class="header" role="banner">
+  <div class="promo-banner">
+      <strong id="loadpromotext"></strong>
+  </div>
+  <div class="inner-container">
+    <div class="top-header">
+
+      <div class="connmenu">
+          <a href="tel:18006617847">1-800-661-7847</a> | <span id="con-toggle">Connect<i class="far fa-chevron-down"></i></span>
+            <div class="con-dd">
+              <ul class="con-dd-list">
+                    <li><a class="navUser-action log" href="/page/contact-us/">Contact Us</a></li>
+                    <li>
+                      <a class="navUser-action" href="https://www.facebook.com/NARrugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook"></use></svg>Facebook</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://www.pinterest.com/naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-pinterest"></use></svg>Pinterest</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://www.twitter.com/NARrugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use></svg>Twitter</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://plus.google.com/u/0/+Naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-googleplus"></use></svg>Google+</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://www.houzz.com/pro/naturalarearugs/natural-area-rugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-houzz"></use></svg>Houzz</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://www.instagram.com/naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-instagram"></use></svg>Instagram</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://blog.naturalarearugs.com/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-wordpress"></use></svg>Blog</a>
+                    </li>
+                    <li>
+                      <a class="navUser-action" href="https://www.youtube.com/c/Naturalarearugs/" target="_blank"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube"></use></svg>Youtube</a>
+                    </li>
+              </ul>
+            </div>
+        </div>
+
+      <div class="desk-blurb">
+        <p class="bold-blurb">Leader in the Natural Rug Retail Industry Since 2000. <a href="/page/earth-friendly/">Go Green!</a></p>
+      </div>
+
+      <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+          {{> components/common/store-logo}}
+      </div>
+
+
+
+      <a href="/cart.php" class="mobile-cart">
+        <i class="far fa-shopping-cart"></i>
+        <span class="cart-num countPill cart-quantity">{{cart.quantity}}</span>
+        <span class="cart-txt">CART</span>
+      </a>
+
+      {{> components/common/navigation}}
+
+      {{> components/common/search-box}}
+
+      <div id="search_toggle">
+        <i class="fas fa-search"></i>
+        <span class="cart-txt">SEARCH</span>
+      </div>
+
+    </div>
+
+
+    <a href="#" class="mobileMenu-toggle">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+        <span class="mobileMenu-toggleText">MENU</span>
+    </a>
+
+    {{{region name="header_bottom"}}}
+    <div class="navPages-container" id="menu" data-menu>
+        {{> components/common/navigation-menu}}
+    </div>
+
+
+  </div>
+</div>

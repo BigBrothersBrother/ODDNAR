@@ -1,0 +1,111 @@
+// =============================================================================
+// PRODUCT REVIEWS (CSS)
+// =============================================================================
+
+.productReviews {
+  padding: 0 20px;
+  @include clearfix;
+
+  > .no-reviews {
+    text-align: center;
+
+    + .productView-reviewLink {
+      float: none;
+      display: block;
+      margin: 0 auto;
+      max-width: 172px;
+    }
+  }
+
+  .pagination {
+    clear: both;
+  }
+
+  .productView-reviewLink {
+    vertical-align: inherit;
+    margin: 0;
+    float: right;
+
+    .atc-card {
+
+      border: 2px solid #326600 !important;
+      background: #fff !important;
+      color: #326600 !important;
+
+      &:hover, &:active, &:focus {
+      background: #326600 !important;
+      border-color:#326600 !important;
+      color: #fff !important;
+      }
+    }
+  }
+
+  #productReviews-content {
+
+    .productReview {
+      width: 100%;
+
+      .productReview-title {
+        font-size: 14px;
+        font-family: $body-font-family;
+        font-weight: 600;
+      }
+
+      .productReview-author {
+        font-size: 14px;
+      }
+
+      .productReview-body {
+        @include fs-custom(16, 14);
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+
+// Review list
+//
+// 1. Kill extra display inline-block spacing
+// -----------------------------------------------------------------------------
+
+.productReviews-list {
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+}
+
+
+// Review item
+// -----------------------------------------------------------------------------
+
+.productReview {
+    @include grid-column(12);
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base");
+    vertical-align: top;
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(4, $total-columns);
+    }
+}
+
+.productReview-title {
+    margin: 0;
+    text-transform: none;
+}
+
+.productReview-author {
+    color: stencilColor("color-textSecondary");
+    margin-bottom: spacing("base");
+}
+
+.productReview-rating {
+    display: inline-block;
+    margin-bottom: spacing("quarter");
+}

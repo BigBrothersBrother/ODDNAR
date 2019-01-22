@@ -1,0 +1,13 @@
+<form class="actionBar" method="get" data-sort-by>
+    {{> components/category/sort-box sort=sort}}
+
+    <label for="sort-box">Sort:</label>
+    <ul id="sort-box" aria-hidden="true">
+        <li data-sort="bestselling">Best Selling</li>
+        <li data-sort="featured" class="active-sort">Featured Items</li>
+        <!--<li data-sort="newest">New Arrivals</li>-->
+        <!--<li data-sort="avgcustomerreview">{{lang 'common.sorter.reviews'}}</li>-->
+        <li data-sort="priceasc">$ - Low</li>
+        <li data-sort="pricedesc">$$$ - High</li>
+    </ul>
+</form>

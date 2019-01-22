@@ -1,0 +1,495 @@
+// =============================================================================
+// USER NAVIGATION (CSS)
+// =============================================================================
+//
+// 1. Corrects the spacing added by .navUser-or
+// 2. Can't use top: 50% because its container `.header` changes its height to
+//    100% when mobile menu is expanded
+// 3. Make the triangle for dropdown centered
+// 4. Needs to be 100% so its dropdown can take full width in mobile viewport
+// 5. Needs to be lower than logo zIndex, otherwise, logo is not clickable
+//
+// -----------------------------------------------------------------------------
+
+.navUser {
+    @include nav($style: "navBar", $wrapper: "nav");
+    display: none;
+
+    @include breakpoint("large") {
+        display: inline-block;
+        margin-right: 20px;
+        position: absolute;
+        width: auto;
+        right: 0;
+        top: -20px;
+        transform: none;
+        z-index: 9999;
+    }
+    @media screen and (min-width: 1290px) {
+      margin-right: 12px;
+    }
+
+    .dropdown-menu {
+        background-color: stencilColor("navUser-dropdown-backgroundColor");
+        border: 1px solid stencilColor("navUser-dropdown-borderColor");
+        box-shadow: container("dropShadow");
+        position: absolute;
+
+        // scss-lint:disable NestingDepth
+        &.is-open {
+            &:before {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 10px,
+                    $triangle-color: stencilColor("navUser-dropdown-borderColor")
+                );
+                bottom: 100%;
+                left: spacing("half");
+                position: absolute;
+            }
+
+            &:after {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 8px,
+                    $triangle-color: stencilColor("navUser-dropdown-backgroundColor")
+                );
+                bottom: 100%;
+                left: spacing("half") + remCalc(2px);
+                position: absolute;
+            }
+        }
+    }
+}
+
+.navUser-action {
+    color: #5a534c;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-size: 14px;
+    text-decoration: none;
+    @include fs-custom(11, 14);
+
+    &:hover,
+    &.is-open {
+        color: stencilColor("navUser-color-hover");
+
+        // scss-lint:disable NestingDepth
+        svg {
+            fill: #ada9a6;
+        }
+        // scss-lint:enable NestingDepth
+    }
+
+    svg {
+        fill: #ada9a6;
+        transition: all 0.15s ease;
+    }
+}
+
+.navUser-action--storeCredit + .dropdown-menu {
+    max-width: remCalc(300px);
+    padding: spacing("single");
+
+    &:before {
+        // scss-lint:disable ImportantRule
+        left: remCalc(140px) !important; // 3
+    }
+
+    &:after {
+        // scss-lint:disable ImportantRule
+        left: remCalc(142px) !important; // 3
+    }
+}
+
+.navUser-action-divider {
+    border-right: container("border");
+    color: stencilColor("color-textSecondary");
+    display: inline-block;
+    padding: 0 remCalc(20) 0 0;
+    text-decoration: none;
+}
+
+.navUser-item {
+    display: none;
+
+    @include breakpoint("large") {
+        display: block;
+        margin-right: 15px !important;
+        padding-bottom: 15px !important;
+
+        &:last-child {
+          margin-right: 0 !important;
+        }
+
+        &.navUser-item--social {
+            margin-top: rem-calc(5px);
+            padding-right: rem-calc(5px);
+        }
+
+        &.navUser-item--divider {
+            font-size: rem-calc(25px);
+            margin-top: rem-calc(8px);
+            padding-left: rem-calc(2px);
+        }
+    }
+}
+
+.navUser-item--cart {
+    display: block;
+
+    .navUser-action {
+
+        // scss-lint:disable NestingDepth
+        &:hover,
+        &.is-open {
+        }
+
+    .svg-inline--fa.fa-shopping-cart.fa-w-18 {
+      display: inline-block;
+      font-size: 19px;
+      margin-right: 4px;
+
+        }
+    }
+
+    .dropdown-menu {
+        max-width: remCalc(320px);
+
+        // scss-lint:disable NestingDepth
+        &.is-open {
+            &:before,
+            &:after {
+                left: auto;
+            }
+
+            &:before {
+                right: spacing("half");
+            }
+
+            &:after {
+                right: spacing("half") + remCalc(2px);
+            }
+        }
+    }
+}
+
+.navUser-item-cartLabel {
+    display: none;
+
+    @include breakpoint("small") {
+        display: inline;
+    }
+}
+
+.caret-down {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.navUser-item--connect {
+  position: relative;
+  cursor: pointer;
+
+  .con-dd {
+    border: 1px solid #5a534c;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 241px;
+    background-color: #fff;
+    border-radius: 0px;
+    padding-bottom: 15px;
+    left: 50%;
+    top: 40px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform:    translateX(-50%);
+    -ms-transform:     translateX(-50%);
+    -o-transform:      translateX(-50%);
+
+    &:before {
+      content: " ";
+      border-left: 1px solid #5a534c;
+      border-top: 1px solid #5a534c;
+      background: #fff;
+      height: 10px;
+      width: 10px;
+      display: block;
+      position: absolute;
+      margin-top: -6px;
+      -webkit-transform: rotate(45deg);
+      -moz-transform:    rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      left: 50%;
+      margin-left: -10px;
+    }
+
+    .con-dd-list {
+
+      li {
+
+        a.log {
+          margin: 20px 20px 13px;
+          display: block;
+          text-align: center;
+          font-weight: 600 !important;
+          color: #fff !important;
+          text-transform: uppercase !important;
+          background: #408300;
+
+            &:hover, &:active, &:focus {
+            background: #326600 !important;
+            }
+          }
+
+        a.navUser-action {
+          color: #000;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          padding: 11px 20px;
+          display: block;
+          text-transform: capitalize;
+
+          &:hover, &:active, &:focus {
+          background: #f6f4ee;
+          }
+
+          svg {
+            width: 16px;
+            height: 16px;
+            fill: #000;
+            margin-right: 8px;
+            transform: translateY(2px);
+          }
+        }
+      }
+    }
+  }
+
+  &.dd-vis {
+    .con-dd {
+      display: block;
+    }
+  }
+}
+
+.navUser-item--account {
+  position: relative;
+  cursor: pointer;
+
+  .account-icon {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  #acc-toggle {
+
+    &.open {
+
+      .caret-down {
+        -webkit-transform: rotate(-180deg);
+        -moz-transform:    rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .acc-dd {
+    border: 1px solid #5a534c;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 241px;
+    background-color: #fff;
+    border-radius: 0px;
+    left: 50%;
+    top: 40px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform:    translateX(-50%);
+    -ms-transform:     translateX(-50%);
+    -o-transform:      translateX(-50%);
+
+    &:before {
+      content: " ";
+      border-left: 1px solid #5a534c;
+      border-top: 1px solid #5a534c;
+      background: #fff;
+      height: 10px;
+      width: 10px;
+      display: block;
+      position: absolute;
+      margin-top: -6px;
+      -webkit-transform: rotate(45deg);
+      -moz-transform:    rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      left: 50%;
+      margin-left: -10px;
+    }
+
+    .acc-dd-list {
+      padding: 0px 0px 10px;
+
+      li {
+
+        &:first-child {
+          border: 0;
+        }
+
+        a.log {
+          margin: 20px 20px 10px;
+          display: block;
+          font-weight: 600 !important;
+          font-size: 14px;
+          text-align: center;
+          color: #fff !important;
+          text-transform: uppercase !important;
+        background: #408300;
+
+          &:hover, &:active, &:focus {
+          background: #326600 !important;
+          }
+        }
+
+        a.navUser-action {
+          color: #000;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          padding: 10px 20px;
+          display: block;
+          text-transform: capitalize;
+
+          &:hover, &:active, &:focus {
+          background: #f6f4ee;
+          }
+        }
+      }
+    }
+  }
+
+    .navUser-or {
+
+        // scss-lint:disable NestingDepth
+        + .navUser-action {
+            margin-right: -0.5rem; // 1
+        }
+    }
+
+    .navUser-action {
+        display: inline-block;
+    }
+
+    &.dd-vis {
+      .acc-dd {
+        display: block;
+      }
+    }
+}
+
+.navUser-or {
+    color: stencilColor("navUser-color");
+    cursor: default;
+    display: inline-block;
+    margin: 0 remCalc(-12px);
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
+}
+    .navUser-action .svg-inline--fa.fa-chevron-down.fa-w-14 {
+      font-size: 10px;
+      margin-left: 3px;
+      margin-right: 5px;
+}
+// Quick search
+// -----------------------------------------------------------------------------
+//
+// 1. Overriding the inline styles from Foundation as this is a unique dropdown.
+//
+// -----------------------------------------------------------------------------
+
+.navUser-action--quickSearch {
+
+    &.is-open {
+        position: relative;
+
+        // scss-lint:disable NestingDepth
+        &:before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: color("greys", "lightest")
+            );
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+.dropdown--quickSearch {
+    background-color: $dropdown--quickSearch-backgroundColor;
+    padding: spacing("single") 0;
+
+    @include breakpoint("small") {
+        padding: spacing("double");
+    }
+
+    &.is-open {
+        // scss-lint:disable ImportantRule
+        left: 0 !important; // 1
+        outline: none;
+        right: 0 !important; // 1
+        width: 100% !important;
+        z-index: zIndex("high");
+    }
+
+    .form {
+        margin: auto;
+        max-width: 30rem;
+    }
+
+    .form,
+    .form-field {
+        margin-bottom: 0;
+    }
+
+    .form-input {
+        font-size: fontSize("small");
+        height: unset;
+    }
+
+    .productGrid {
+        padding: spacing("single") 0 0;
+
+        @include breakpoint("small") {
+            padding: spacing("double") 0 0;
+        }
+    }
+}
+
+// Counter Pill
+// -----------------------------------------------------------------------------
+//
+// 1. Hardcoded intentionally for precise pixels.
+//
+// -----------------------------------------------------------------------------
+
+.countPill {
+    display: none;
+    font-size: 14px;
+    line-height: 20px; // 1
+
+    @include breakpoint("large") {
+      display: inline;
+    }
+}

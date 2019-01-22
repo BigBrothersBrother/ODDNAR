@@ -1,0 +1,121 @@
+// =============================================================================
+// ACCOUNT
+// =============================================================================
+
+
+// Account layouts
+// -----------------------------------------------------------------------------
+
+.account {
+    margin: 0 auto spacing("single");
+    padding: 0 30px;
+}
+
+.account--fixed {
+    @include breakpoint("medium") {
+        width: 80%;
+    }
+}
+
+.account--fixedSmall {
+    @include breakpoint("medium") {
+        margin: 0 auto;
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.account--fixedLarge {
+    @include breakpoint("medium") {
+        margin: 0 auto;
+        width: grid-calc(9, $total-columns);
+    }
+}
+
+.account-head {
+    margin-bottom: spacing("double");
+    text-align: center;
+
+    .alertBox {
+        padding-left: spacing("double");
+        padding-right: spacing("double");
+        text-align: left;
+    }
+}
+
+.account-body {
+    @include grid-row($behavior: "nest");
+}
+
+.account-content {
+    @include grid-column(12);
+    width: 100%;
+    max-width: 768px;
+    float: none !important;
+}
+
+.account-content--fixed {
+
+    @include breakpoint("medium") {
+        width: grid-calc(8, $total-columns);
+    }
+}
+
+.account-content--fixedSmall {
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.account-sidebar {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        width: grid-calc(4, $total-columns);
+
+        .account-content--fixedSmall + & {
+            float: right;
+        }
+    }
+}
+.account-content li {
+	list-style: none;
+}
+.account-product-body {
+  display: inline-block;
+}
+.account-product-figure {
+	display: inline-block;
+	vertical-align: top;
+}
+.account-orderStatus-label, .account-product-description, .account-product-detail  {
+  margin: 0px 0px 10px;
+  font-family: $body-font-family;
+  font-size: 14px;
+}
+.account-product-title {
+  margin: 0;
+  font-family: $body-font-family;
+  font-weight: bold;
+  font-size: 14px;
+}
+.account-product-detail-heading {
+  margin: 0;
+  font-family: $body-font-family;
+  font-weight: bold;
+  font-size: 14px;
+}
+.account-body h2 {
+	font-size: 18px;
+}
+.account-body .button--primary {
+  padding: 8px 20px;
+}
+.account .form {
+	max-width: 768px;
+	margin: 0 auto;
+}
+.alertBox.alertBox--info {
+	max-width: 768px;
+	margin: 0 auto;
+}

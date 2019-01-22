@@ -1,0 +1,44 @@
+{{#if settings.add_this.buttons}}
+    <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}"
+         addthis:title="{{title}}">
+         <span>Share This Item</span>
+        <ul class="socialLinks">
+
+          <li class="socialLinks-item socialLinks-item--facebook">
+            <a class="addthis_button_facebook icon icon--facebook" title="Facebook" href="#">
+              <svg>
+                  <use xlink:href="#icon-facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="socialLinks-item socialLinks-item--twitter">
+            <a class="addthis_button_twitter icon icon--twitter" title="Twitter" href="#">
+              <svg>
+                  <use xlink:href="#icon-twitter"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="socialLinks-item socialLinks-item--email">
+            <a class="addthis_button_email icon icon--email" target="_blank" title="Email" href="#">
+              <svg>
+                <use xlink:href="#icon-envelope"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="socialLinks-item socialLinks-item--print">
+            <a class="addthis_button_print icon icon--print" title="Print" href="#">
+              <svg>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-print"></use>
+              </svg>
+            </a>
+           </li>
+        </ul>
+        <script type="text/javascript"
+                src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+        <script>
+            if (typeof(addthis) === "object") {
+                addthis.toolbox('.addthis_toolbox');
+            }
+        </script>
+    </div>
+{{/if}}
