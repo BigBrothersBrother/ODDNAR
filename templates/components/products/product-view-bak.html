@@ -21,7 +21,7 @@
             </a>
         </figure>
         <ul class="productView-thumbnails">
-            {{#each product.images}}                
+            {{#each product.images}}
                 <li class="productView-thumbnail" data-imgurl="{{this.alt}}">
                     <a
                         class="productView-thumbnail-link"
@@ -31,13 +31,13 @@
                         data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
                         <img onerror="this.style.display = 'none'; $(this).parent('a').parent('li').hide();" src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" title="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}">
                     </a>
-                </li>                  
+                </li>
             {{/each}}
         </ul>
 
         {{> components/common/share}}
 
-                    
+
     </section>
 
 
@@ -58,7 +58,7 @@
               {{#if product.num_reviews '>' 0}}
                 <span class="productView-reviewLink">
                   {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                  <a href="{{product.url}}#product-reviews">Read Reviews</a>
+                  <a href="{{product.url}}#product-reviewsTP">Read Reviews</a>
                 </span>
               {{/if}}
             </div>
@@ -84,14 +84,14 @@
             <div class="pibox" id="icon-earth" style="display: none;">
                 <img src="{{cdn '/img/btn_ecofriendly.png'}}" alt="Earth Friendly" />
                 <span>Earth Friendly</span>
-            </div>   
+            </div>
             <div class="pibox" id="icon-usa" style="display: none;">
                 <img src="{{cdn '/img/btn_flag.png'}}" alt="Made in USA" />
                 <span>Made in USA</span>
-            </div>         
+            </div>
         </div>
         <div style="clear: both;"></div>
- 
+
         <div class="productView-options">
             <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
                   data-cart-item-add>
@@ -124,7 +124,7 @@
                     {{/or}}
                 </div>
                 {{{region name="product_below_price"}}}
-                
+
                 {{#if product.availability}}
                   <div id="shiptime">{{product.availability}}</div>
                 {{/if}}

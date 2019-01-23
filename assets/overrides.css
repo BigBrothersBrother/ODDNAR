@@ -203,11 +203,13 @@ footer .form-prefixPostfix .form-input {
     }
 }
 
-.productView-rating {
-    display: none;
+#product-reviewsTP {
+    padding-bottom: 125px;
 }
+/*.productView-rating {*/
+/*    display: none;*/
+/*}*/
 
 /*#mm-0 > div.body.product-page > div.inner-container > div > div.trustpilot-widget > iframe {*/
 /*    height: auto !important;*/
 /*}*/
-

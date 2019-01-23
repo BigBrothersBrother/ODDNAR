@@ -20,7 +20,7 @@
                          alt="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" title="{{#each product.custom_fields}}{{#if name '===' 'Image Alt Text'}}{{value}}{{/if}}{{/each}}" data-main-image>
                 </a>
             </figure>
-            
+
             <ul class="productView-thumbnails menuThumbs"{{#gt product.images.length 5}} data-slick='{
                     "infinite": false,
                     "mobileFirst": true,
@@ -61,7 +61,7 @@
                   {{#if product.num_reviews '>' 0}}
                     <span class="productView-reviewLink">
                       {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                      <a href="{{product.url}}#product-reviews">Read Reviews</a>
+                      <a href="{{product.url}}#product-reviewsTP">Read Reviews</a>
                     </span>
                   {{/if}}
                 </div>

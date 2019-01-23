@@ -20,7 +20,7 @@ product:
     <div itemscope itemtype="http://schema.org/Product" class="customproduct swatchtest">
         {{> components/products/product-view-custom schema=true}}
 
-{{#if product.related_products}}
+        {{#if product.related_products}}
           <section class="also-need">
             <div class="also-need-heading">
               <div class="custom-hr"></div>
@@ -31,7 +31,7 @@ product:
           </section>
         {{/if}}
 
-
+<div id="product-reviewsTP"></div>
 <!-- TrustBox widget - Product Reviews MultiSource SEO -->
 <div class="trustpilot-widget" data-locale="en-US" data-template-id="5763bccae0a06d08e809ecbb" data-businessunit-id="5b7c88af1aeb1d0001664f31" data-style-height="700px" data-style-width="100%" data-theme="light" data-sku="{{product.sku}}" data-name="{{product.title}}">
 <a href="https://www.trustpilot.com/review/naturalarearugs.com" target="_blank">Trustpilot</a>
